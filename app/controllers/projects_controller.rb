@@ -4,12 +4,13 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = current_freelance.projects.all
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
+    
   end
 
   # GET /projects/new
@@ -61,10 +62,14 @@ class ProjectsController < ApplicationController
     end
   end
 
+
   #queries propias
-  def get_all_income
-      
-  end
+
+    #POST PARA LOS CALCULOS TOTALES
+  
+    # GET PARA RENDEAR EN LA VISTA
+  
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -75,5 +80,38 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:name, :description, :start_date, :end_date, :total_price, :client_id, :freelance_id, :state_id, :type_id)
+    end
+
+    # calculos internos de la aplicacion
+    def calculate_incomes_by_project(projectId)
+      project = Project.find(projectId)
+      return project.items.sum(:price)
+    end
+
+    def calculate_expenses_by_project(projectId)
+      project = Project.find(projectId)
+      return project.expenses.sum(:price)
+    end
+
+    def calculate_all_incomes
+        projects = Project.where(freelance_id:current_freelance.id)
+        total_income = 0
+
+        projects.each do |proj|
+          total_income += proj.items.sum(:price)
+        end
+
+        return total_income
+    end
+
+    def calculate_all_expenses
+      projects = Project.where(freelance_id:current_freelance.id)
+      total_expenses = 0
+
+      projects.each do |proj|
+        total_expenses += proj.expenses.sum(:price)
+      end
+
+      return total_expenses
     end
 end
