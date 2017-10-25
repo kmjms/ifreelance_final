@@ -1,0 +1,62 @@
+<%= form_with(model: project, local: true) do |form| %>
+  <% if project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :project_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :project_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.date_select :start_date, id: :project_start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.date_select :end_date, id: :project_end_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_price %>
+    <%= form.text_field :total_price, id: :project_total_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :client_id %>
+    <%= form.text_field :client_id, id: :project_client_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :freelance_id %>
+    <%= form.text_field :freelance_id, id: :project_freelance_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state_id %>
+    <%= form.text_field :state_id, id: :project_state_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type_id %>
+    <%= form.text_field :type_id, id: :project_type_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

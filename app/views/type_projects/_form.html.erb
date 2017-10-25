@@ -1,0 +1,27 @@
+<%= form_with(model: type_project, local: true) do |form| %>
+  <% if type_project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(type_project.errors.count, "error") %> prohibited this type_project from being saved:</h2>
+
+      <ul>
+      <% type_project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :type_project_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :type_project_description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

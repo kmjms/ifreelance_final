@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @type_project.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @type_project.description %>
+</p>
+
+<%= link_to 'Edit', edit_type_project_path(@type_project) %> |
+<%= link_to 'Back', type_projects_path %>

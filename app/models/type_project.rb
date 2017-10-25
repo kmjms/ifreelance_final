@@ -1,0 +1,2 @@
+class TypeProject < ApplicationRecord
+end
