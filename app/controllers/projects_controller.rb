@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new
+    @project = current_freelance.projects.new
   end
 
   # GET /projects/1/edit
@@ -26,7 +26,6 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-    @clients = Clients.
 
     respond_to do |format|
       if @project.save
@@ -82,6 +81,7 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(:name, :description, :start_date, :end_date, :total_price, :client_id, :freelance_id, :state_id, :type_id)
     end
+
 
     # calculos internos de la aplicacion
     def calculate_incomes_by_project(projectId)
