@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20171025154110) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "type_projects", force: :cascade do |t|
+  create_table "types", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false

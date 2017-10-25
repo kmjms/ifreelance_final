@@ -1,6 +1,6 @@
-class CreateTypeProjects < ActiveRecord::Migration[5.1]
+class CreateTypes < ActiveRecord::Migration[5.1]
   def change
-    create_table :type_projects do |t|
+    create_table :types do |t|
       t.string :name
       t.text :description
 
