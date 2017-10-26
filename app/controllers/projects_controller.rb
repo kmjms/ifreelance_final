@@ -4,7 +4,6 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
 
-  current_freelance = Freelance.find(1)
   def index
     @freelance = current_freelance
     @projects = current_freelance.projects.all
