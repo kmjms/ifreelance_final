@@ -1,12 +1,17 @@
 <%= render "partials/header" %>
-<div class = "card">
-    <div class = "card-header">
-        <div class = "card-body card-padding">
+
+
+<%= render "partials/side_freelance" %>
+
+<div id="page-content-wrapper"  class=" col-sm-9 col-sm-offset-3">
+
+<div class = "card col-sm-12">
+    <div class = "card-block col-sm-12">
+        <div class = "card-body card-padding col-sm-12">
             <%= form_for :project, url: project_path(@project), method: :patch do |f| %>
             
                     <input type="text" value="<% @project.id%>" style="display:none">
         
-            
                 <div class = "col-sm-4">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nombre</label>
@@ -82,17 +87,18 @@
 				<div class="btn-group" role="group">
 					<a href="<% projects_path %>" type="button" class="btn btn-default">Cerrar</a>
 				</div>
-				<div class="btn-group btn-delete hidden" role="group">
-					<button type="button" id="delImage" class="btn btn-default btn-hover-red" data-dismiss="modal"  role="button">Delete</button>
-				</div>
+    
 				<div class="btn-group" role="group">
-					<button type="submit" id="saveImage" class="btn btn-default btn-hover-green" data-action="save" role="button">Guardar</button>
+                    
+					<button type="submit"  class="btn btn-default btn-hover-green" data-action="save" role="button">Guardar</button>
 				</div>
 			</div>
 
             <% end %>
         </div>
     </div>
+</div>
+
 </div>
 
 <%= render "partials/footer" %>

@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   belongs_to :project
 
   validates :price, presence: true
+  
   before_create:add_price
   before_destroy:remove_price
   

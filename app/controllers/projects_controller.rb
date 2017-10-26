@@ -24,12 +24,11 @@ class ProjectsController < ApplicationController
   def show
     @client = Client.find(@project.client_id)
     respond_to do |format|
-      #if @project.type_id == 1
+      if @project.type_id == 1
        format.pdf {render template: 'pdf/quotation', pdf:'quotation'}
-       #   else
-         #  format.pdf {render template: 'pdf/bill', pdf:'bill'}
-      #end
-      
+          else
+           format.pdf {render template: 'pdf/bill', pdf:'bill'}
+      end
     end
   end
 

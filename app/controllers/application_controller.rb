@@ -23,5 +23,10 @@ def calculate_all_expenses
 
   return total_expenses
 end
+
+
+def not_found
+  raise ActionController::RoutingError.new('Not Found')
+end
   
 end

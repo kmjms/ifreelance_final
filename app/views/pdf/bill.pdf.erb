@@ -34,13 +34,15 @@
         <th>valor</th>
       </tr>
     </thead>
-
+		<% totalPrice = 0%>
     <tbody>
 		<% @project.items.each do |it| %>
 			<tr>
 				<td><%= it.description %></td>
-				<td><%= it.description %></td>
+				<td><%= it.price %></td>
+
 			</tr>
+			<% totalPrice = totalPrice + it.price%>
 	  <% end %>
     </tbody>
 
@@ -59,7 +61,7 @@
 </div>
 
 <div class="container">
-	El costo a punto del proyecto es <b><%= number_to_currency(@project.total_price) %> </b>
+	El costo a punto del proyecto es <b><%= number_to_currency(totalPrice) %> </b>
 </div>
 
 <div class="container">

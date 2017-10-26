@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   def index
 
   
-    #if  params[:project_id] == nil
+    #if params[:project_id] == nil
       @project = Project.find(params[:project_id])
       @items = @project.items.all
      #   else
