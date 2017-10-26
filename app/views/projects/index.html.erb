@@ -33,7 +33,9 @@
                                         <td><%= proj.end_date %></td>
                                         <td><%= proj.total_price %></td>
 
-                                        <td><a class="btn bgm-teal waves-effect" href = "<%= projects_path%>/<%= proj.id%>/edit"><i class="zmdi zmdi-edit"></i></a> 
+                                        <td>
+                                        <a class="btn bgm-cyan waves-effect" href = "<%= projects_path %>/<%= proj.id%>/items"><i class="zmdi zmdi-collection-item"></i></a> 
+                                        <a class="btn bgm-teal waves-effect" href = "<%= projects_path%>/<%= proj.id%>/edit"><i class="zmdi zmdi-edit"></i></a> 
                                             <% valuePath = projects_path.to_s + "/" + proj.id.to_s %>
                                          <%= link_to valuePath, class: "btn btn-danger waves-effect", method: :delete,data: { confirm: 'Estas seguro de eliminar?' } do %>
                                             <i class="zmdi zmdi-close"></i>

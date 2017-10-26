@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy,:view_items]
   before_action :authenticate_freelance!
   # GET /projects
   # GET /projects.json
@@ -75,7 +75,7 @@ class ProjectsController < ApplicationController
     end
   end
 
- 
+
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
@@ -93,7 +93,10 @@ class ProjectsController < ApplicationController
   
     # GET PARA RENDEAR EN LA VISTA
   
-  
+  def view_items
+    redirect_to items_url,project_id: @project.id
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project

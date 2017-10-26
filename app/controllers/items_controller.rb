@@ -4,12 +4,20 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    if  params[:project_id] == nil
+      @project = Project.find(params[:project_id])
+      @items = @project.items.all
+        else
+          flash[:notice] = "Proyecto no contiene items"
+          redirect_to projects_path
+    end
+    
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
+    
   end
 
   # GET /items/new
@@ -24,11 +32,14 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(item_params)
+    @item = Project.find(params[:project_id]).items.new(item_params)
 
     respond_to do |format|
+      net_address = projects_path + '/' +  @item.project_id.to_s + items_path
+
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        
+        format.html { redirect_to net_address , notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -55,20 +66,24 @@ class ItemsController < ApplicationController
   # DELETE /items/1.json
   def destroy
     @item.destroy
+    net_address = projects_path + '/' +  @item.project_id.to_s + items_path
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to net_address, notice: 'Item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
-
+  def view_by_project
+    @project = Project.find(params[:support_id])
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
+      
       @item = Item.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:description, :price, :project_id)
+      params.permit(:description, :price, :project_id)
     end
 end

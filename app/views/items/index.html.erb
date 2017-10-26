@@ -1,31 +1,94 @@
-<p id="notice"><%= notice %></p>
+<%= render "partials/header" %>
 
-<h1>Items</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Project</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+ <div class="card">
+                        <div class="card-header">
+                            <h2>Striped rows
+                                <small>Add zebra-striping to any table row within the tbody</small>
+                            </h2>
+                        </div>
 
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.description %></td>
-        <td><%= item.price %></td>
-        <td><%= item.project %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
 
-<br>
+                                <tr>
+                                    <th>#</th>
+                                    
+                                    <th>Descripcion</th>
+                                    <th>Precio</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <div id = "MARCA" style="display:none"></div>
+                                <% @items.each do |ite| %>
+                                    <tr>
+                                        <td><%= ite.id %></td>
+                                        <td><%= ite.description %></td>
+                                        <td><%= ite.price %></td>
 
-<%= link_to 'New Item', new_item_path %>
+                                        <td> 
+                                            <% valuePath = projects_path + '/' +  @project.id.to_s + items_path + "/" + ite.id.to_s %>
+                                         <%= link_to valuePath, class: "btn btn-danger waves-effect", method: :delete,data: { confirm: 'Estas seguro de eliminar?' } do %>
+                                            <i class="zmdi zmdi-close"></i>
+                                        <% end %>
+                                        
+                                        
+                                        </td>
+                                                
+                                    
+                                    </tr>
+                                   
+                                <% end %>
+                                
+                              
+                                </tbody>
+                            </table>
+                        </div>
+    </div>
+
+<!-- Formulario -->
+<%= form_for(@project.items.new) do |f| %>
+<input type="text" name="project_id" value="<%= @project.id %>" style="display:none">
+
+<div class="card">
+                        <div class="card-header">
+                            <h2>Crear Nuevo
+                                <small>Crea Nuevos Item
+                                </small>
+                            </h2>
+                        </div>
+
+                        <div class="card-body card-padding">
+                            
+                            <br/><br/>
+
+                            <div class="row">
+                                
+
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-sort-amount-desc"></i></span>
+                                        <div class="fg-line">
+                                            <input name="description" type="text" class="form-control" placeholder="Descripcion" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group fg-line">
+                                        <label>Precio</label>
+                                        <input name="price" type="text" class="form-control input-mask" data-mask="000.000.000.000.000,00" placeholder="eg: 000.000.000.000.000,00" autocomplete="off">
+                                    </div>
+                                </div>
+                        </div>
+                        <br/>
+                        <button type="submit" class="btn btn-success btn-block waves-effect">Crear</button>
+                    </div>
+<% end %>
+
+</div>
+
+
+<%= render "partials/footer" %>
+
