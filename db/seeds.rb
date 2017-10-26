@@ -10,6 +10,12 @@
 # pruebasree
 Client.create(email:"client@test.com",password:"123456")
 Freelance.create(email:"ree@test.com",password:"123456")
-Type.create(name:"prueba",description:"tipo de prueba")
+
+Type.create(name:"Cotizacion",description:"tipo de prueba")
+Type.create(name:"Diseño",description:"tipo de prueba")
+Type.create(name:"Desarrollo",description:"tipo de prueba")
+Type.create(name:"Pruebas",description:"tipo de prueba")
+Type.create(name:"Implementacion",description:"tipo de prueba")
+
 State.create(name:"prueba",description:"estado de prueba")
 Project.create(name:"proj prueba",description:"projecto prueba",client_id:"1",freelance_id:"1",state_id:"1",type_id:"1",total_price:"150.000")

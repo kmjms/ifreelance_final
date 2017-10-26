@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cotizacion</title>
+    <meta charset="UTF-8">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<!--<div class="row">
+	<div class="col-xs-11"></div>
+	<div class="col-xs-1"></div>
+</div>-->
+<div class="row">
+	<div class="col-sm-9 col-lg-10"></div>
+	<div class="col-sm-3 col-lg-1"><center>
+		<img class="img-responsive" src="assets/img/logo.jpg">
+		<h3>Cotizacion de Proyecto  No. <%= @project.id %> </h3>
+	</center></div>
+	<div class="col-sm-1"></div>
+</div>
+		<% currentFreelance = Freelance.find(@project.freelance_id) %>
+
+<h3>Bogotá DC, <%= DateTime.now.to_date %></h3>
+<h3><%= @client.name %> <%= @client.surname %></h3>
+<h3>En atención a su solicitud, nos permitimos Cotizar el siguiente servicio:</h3>
+
+<div class = "container">
+	<h3>Descripcion</h3>
+	<p><%= @project.description %><p>
+</div>
+
+<div class="container">
+	El costo a la fecha del proyecto es <b><%= number_to_currency(@project.total_price) %> </b>
+</div>
+
+<div class="container">
+	Cordialmente, <%= currentFreelance.name%> <%=currentFreelance.surname%>.
+</div>
+
+<footer class="align-text-bottom">
+	<center>Dirección: Calle 127 # 15 - 16 Oficina 910</center>
+	<center>Teléfono: (+57) 312 123 45 68</center>
+	<center>E-Mail: <%=currentFreelance.email%></center>
+</footer>
+
+<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+</body>
+</html>

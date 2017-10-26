@@ -11,12 +11,26 @@ class ProjectsController < ApplicationController
     @types = Type.all
     @incomes = calculate_all_incomes
     @expenses = calculate_all_expenses
+
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template: 'pdf/bill', pdf:'bill'}
+    end
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
-    
+    @client = Client.find(@project.client_id)
+    respond_to do |format|
+      #if @project.type_id == 1
+       format.pdf {render template: 'pdf/quotation', pdf:'quotation'}
+       #   else
+         #  format.pdf {render template: 'pdf/bill', pdf:'bill'}
+      #end
+      
+    end
   end
 
   # GET /projects/new
