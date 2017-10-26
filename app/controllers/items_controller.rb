@@ -4,13 +4,15 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    if  params[:project_id] == nil
+
+  
+    #if  params[:project_id] == nil
       @project = Project.find(params[:project_id])
       @items = @project.items.all
-        else
-          flash[:notice] = "Proyecto no contiene items"
-          redirect_to projects_path
-    end
+     #   else
+      #    flash[:notice] = "Proyecto no contiene items"
+       #    redirect_to projects_path
+    # end
     
   end
 
@@ -72,13 +74,10 @@ class ItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  def view_by_project
-    @project = Project.find(params[:support_id])
-  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      
       @item = Item.find(params[:id])
     end
 
