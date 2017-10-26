@@ -753,9 +753,9 @@
                                 <div class="card-body">
                                     <div class="list-group">
                                         <% @freelance.clients.each do |cli| %>
-                                            <a class="list-group-item media" href="">
+                                            <a class="list-group-item media" href="<%= clients_path%>/<%=cli.id%>">
                                             <div class="pull-left">
-                                                <img class="lgi-img" src="img/demo/profile-pics/1.jpg" alt="">
+                                                <img class="lgi-img" src="img/demo/profile-pics/<%=cli.id % 4 %>.jpg" alt="">
                                             </div>
                                             <div class="media-body">
                                                 <div class="lgi-heading"><%= cli.name %></div>
@@ -771,43 +771,7 @@
 
                                         <% end%>
                                         
-                                        <a class="list-group-item media" href="">
-                                            <div class="pull-left">
-                                                <img class="lgi-img" src="img/demo/profile-pics/2.jpg" alt="">
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="lgi-heading">Jonathan Morris</div>
-                                                <small class="lgi-text">Nunc quis diam diamurabitur at dolor elementum, dictum turpis vel</small>
-                                            </div>
-                                        </a>
-                                        <a class="list-group-item media" href="">
-                                            <div class="pull-left">
-                                                <img class="lgi-img" src="img/demo/profile-pics/3.jpg" alt="">
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="lgi-heading">Fredric Mitchell Jr.</div>
-                                                <small class="lgi-text">Phasellus a ante et est ornare accumsan at vel magnauis blandit turpis at augue ultricies</small>
-                                            </div>
-                                        </a>
-                                        <a class="list-group-item media" href="">
-                                            <div class="pull-left">
-                                                <img class="lgi-img" src="img/demo/profile-pics/4.jpg" alt="">
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="lgi-heading">Glenn Jecobs</div>
-                                                <small class="lgi-text">Ut vitae lacus sem ellentesque maximus, nunc sit amet varius dignissim, dui est consectetur neque</small>
-                                            </div>
-                                        </a>
-                                        <a class="list-group-item media" href="">
-                                            <div class="pull-left">
-                                                <img class="lgi-img" src="img/demo/profile-pics/4.jpg" alt="">
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="lgi-heading">Bill Phillips</div>
-                                                <small class="lgi-text">Proin laoreet commodo eros id faucibus. Donec ligula quam, imperdiet vel ante placerat</small>
-                                            </div>
-                                        </a>
-                                        <a class="view-more" href="">View All</a>
+                                        <a class="view-more" href="/clients">Ver Todos</a>
                                     </div>
                                 </div>
                             </div>

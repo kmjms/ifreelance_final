@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   get 'dashboard/index'
 
   get 'home/index'
@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :projects
   resources :type_projects
   resources :states
+  resources :clients
+
   devise_for :freelances
   devise_for :clients
 

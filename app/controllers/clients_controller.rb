@@ -1,10 +1,10 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_freelance
+
   # GET /clients
   # GET /clients.json
   def index
-    @clients = current_freelance.clients.all
+    @clients = Client.all
   end
 
   # GET /clients/1
@@ -14,7 +14,7 @@ class ClientsController < ApplicationController
 
   # GET /clients/new
   def new
-    @client = current_freelance.clients.new
+    @client = Client.new
   end
 
   # GET /clients/1/edit
@@ -24,7 +24,7 @@ class ClientsController < ApplicationController
   # POST /clients
   # POST /clients.json
   def create
-    @client = current_freelance.clients.new(client_params)
+    @client = Client.new(client_params)
 
     respond_to do |format|
       if @client.save
