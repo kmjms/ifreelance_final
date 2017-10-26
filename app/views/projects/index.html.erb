@@ -1,5 +1,6 @@
 <%= render "partials/header" %>
 
+
  <div class="card">
                         <div class="card-header">
                             <h2>Striped rows
@@ -22,6 +23,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <div id = "MARCA" style="display:none"></div>
                                 <% @projects.each do |proj| %>
                                     <tr>
                                         <td><%= proj.id %></td>
@@ -30,8 +32,12 @@
                                         <td><%= proj.start_date %></td>
                                         <td><%= proj.end_date %></td>
                                         <td><%= proj.total_price %></td>
-                                        <td><button class="btn bgm-teal waves-effect"><i class="zmdi zmdi-edit"></i></button> <button class="btn btn-danger waves-effect"><i class="zmdi zmdi-close"></i></button></td>
+
+                                        <td><a class="btn bgm-teal waves-effect" href = "<%= projects_path%>/<%= proj.id%>/edit"><i class="zmdi zmdi-edit"></i></a> <button class="btn btn-danger waves-effect"><i class="zmdi zmdi-close"></i></button></td>
+                                                
+                                    
                                     </tr>
+                                   
                                 <% end %>
                                 
                               
@@ -41,6 +47,7 @@
     </div>
 
 <!-- Formulario -->
+<%= form_for(@freelance.projects.new) do |f| %>
 <div class="card">
                         <div class="card-header">
                             <h2>Crear Nuevo
@@ -83,6 +90,7 @@
                                 </div>
 
                                 <div class="col-sm-4">
+                                
                                     <div class="input-group form-group">
                                     <label>Fecha Final</label>
                                         <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
@@ -260,6 +268,8 @@
 
                         <br/>
                     </div>
+<% end %>
+
 
 
 
