@@ -7,6 +7,8 @@ class ProjectsController < ApplicationController
   def index
     @freelance = current_freelance
     @projects = current_freelance.projects.all
+    @states = State.all
+    @types = Type.all
     @incomes = calculate_all_incomes
     @expenses = calculate_all_expenses
   end
@@ -36,7 +38,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html { redirect_to projects_path, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
@@ -59,6 +61,7 @@ class ProjectsController < ApplicationController
     end
   end
 
+ 
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy

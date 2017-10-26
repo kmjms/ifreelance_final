@@ -33,7 +33,14 @@
                                         <td><%= proj.end_date %></td>
                                         <td><%= proj.total_price %></td>
 
-                                        <td><a class="btn bgm-teal waves-effect" href = "<%= projects_path%>/<%= proj.id%>/edit"><i class="zmdi zmdi-edit"></i></a> <button class="btn btn-danger waves-effect"><i class="zmdi zmdi-close"></i></button></td>
+                                        <td><a class="btn bgm-teal waves-effect" href = "<%= projects_path%>/<%= proj.id%>/edit"><i class="zmdi zmdi-edit"></i></a> 
+                                            <% valuePath = projects_path.to_s + "/" + proj.id.to_s %>
+                                         <%= link_to valuePath, class: "btn btn-danger waves-effect", method: :delete,data: { confirm: 'Estas seguro de eliminar?' } do %>
+                                            <i class="zmdi zmdi-close"></i>
+                                        <% end %>
+                                        
+                                        
+                                        </td>
                                                 
                                     
                                     </tr>
@@ -48,6 +55,9 @@
 
 <!-- Formulario -->
 <%= form_for(@freelance.projects.new) do |f| %>
+<input type="text" name="freelance_id" value="<%= @freelance.id %>" style="display:none">
+<input type="text" name="client_id" value="1" style="display:none">
+
 <div class="card">
                         <div class="card-header">
                             <h2>Crear Nuevo
@@ -65,7 +75,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
                                         <div class="fg-line">
-                                            <input type="text" class="form-control" placeholder="Nombre" required>
+                                            <input name="name" type="text" class="form-control" placeholder="Nombre" required>
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +84,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="zmdi zmdi-sort-amount-desc"></i></span>
                                         <div class="fg-line">
-                                            <input type="text" class="form-control" placeholder="Descripcion" required>
+                                            <input name="description" type="text" class="form-control" placeholder="Descripcion" required>
                                         </div>
                                     </div>
                                 </div>
@@ -84,7 +94,7 @@
                                     <label>Fecha Inicio</label>
                                         <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
                                         <div class="dtp-container">
-                                            <input type="text" class="form-control date-picker" placeholder="Fecha Inicio">
+                                            <input name="start_date" type="text" class="form-control date-picker" placeholder="Fecha Inicio">
                                         </div>
                                     </div>
                                 </div>
@@ -95,7 +105,7 @@
                                     <label>Fecha Final</label>
                                         <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
                                         <div class="dtp-container">
-                                            <input type="text" class="form-control date-picker" placeholder="Fecha Fin">
+                                            <input name="end_date" type="text" class="form-control date-picker" placeholder="Fecha Fin">
                                         </div>
                                     </div>
                                 </div>
@@ -103,174 +113,55 @@
                                 <div class="col-sm-4">
                                     <div class="form-group fg-line">
                                         <label>Precio</label>
-                                        <input type="text" class="form-control input-mask" data-mask="000.000.000.000.000,00" placeholder="eg: 000.000.000.000.000,00" autocomplete="off">
+                                        <input name="total_price" type="text" class="form-control input-mask" data-mask="000.000.000.000.000,00" placeholder="eg: 000.000.000.000.000,00" autocomplete="off">
                                     </div>
                                 </div>
                                 
-                              
+                                 <div class="col-sm-4">
+                        <div class="form-group">
+                <label for="sel1">Cliente</label>
+                <select name="client_id" class="form-control" id="sel1">
+                    <% @freelance.clients.each do |c| %>
+                        <option value="<%=c.id %>"><%=c.username %></option>
+                    <%end%>
+                </select>
+                </div>
+                     </div>
+                      <div class="col-sm-4">
+                      <div class="form-group">
+                <label for="sel1">Estado</label>
+                <select name="state_id" class="form-control" id="sel1"  required>
+                    <% @states.each do |s| %>
+                        <option value="<%=s.id %>"><%=s.name %></option>
+                    <%end%>
+                </select>
+                </div>
+                     </div>
+                      <div class="col-sm-4">
+                      <div class="form-group">
+                <label for="sel1">Tipo</label>
+                <select name="type_id" class="form-control" id="sel1" required>
+                    <% @types.each do |t| %>
+                        <option value="<%=t.id %>"><%=t.name %></option>
+                    <%end%>
+                </select>
+                </div>
+
                                 
                                 
-                                    
-                                <div class="col-sm-4">
-                                    <div class="input-group">
-                                        <div class="fg-line">
-                                            <input type="text" class="form-control" placeholder="Landscape">
-                                        </div>
-                                        <span class="input-group-addon last"><i class="zmdi zmdi-landscape"></i></span>
-                                    </div>
+    
+        </div>
 
-                                    <br/>
-
-                                    <div class="input-group">
-                                        <div class="fg-line">
-                                            <input type="text" class="form-control" placeholder="Weather">
-                                        </div>
-                                        <span class="input-group-addon last"><i class="zmdi zmdi-sun"></i></span>
-                                    </div>
-
-                                    <br/>
-
-                                    <div class="input-group">
-                                        <div class="fg-line">
-                                            <input type="text" class="form-control" placeholder="Flight">
-                                        </div>
-                                        <span class="input-group-addon last"><i class="zmdi zmdi-airplane"></i></span>
-                                    </div>
-
-                                    <br/>
-
-                                    <div class="input-group">
-                                        <div class="fg-line">
-                                            <input type="text" class="form-control" placeholder="Location">
-                                        </div>
-                                        <span class="input-group-addon last"><i
-                                                class="zmdi zmdi-my-location"></i></span>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="zmdi zmdi-arrow-missed"></i></span>
-                                        <div class="fg-line">
-                                            <input type="text" class="form-control" placeholder="Internet">
-                                        </div>
-                                        <span class="input-group-addon last"><i class="zmdi zmdi-globe"></i></span>
-                                    </div>
-
-                                    <br/>
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="zmdi zmdi-money"></i></span>
-                                        <div class="fg-line">
-                                            <input type="text" class="form-control" placeholder="Notifications">
-                                        </div>
-                                        <span class="input-group-addon last"><i
-                                                class="zmdi zmdi-plus-circle-o"></i></span>
-                                    </div>
-
-                                    <br/>
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="zmdi zmdi-mail-send"></i></span>
-                                        <div class="fg-line">
-                                            <input type="text" class="form-control" placeholder="Layers">
-                                        </div>
-                                        <span class="input-group-addon last"><i class="zmdi zmdi-layers "></i></span>
-                                    </div>
-
-                                    <br/>
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="zmdi zmdi-portable-wifi"></i></span>
-                                        <div class="fg-line">
-                                            <input type="text" class="form-control" placeholder="Messages">
-                                        </div>
-                                        <span class="input-group-addon last"><i class="zmdi zmdi-dialpad"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br/><br/>
-                            <p class="c-black f-500 m-b-5 m-t-20">Floating Labels</p>
-                            <small>Basic example for input groups with floating labels</small>
-
-                            <br/>
-                            <br/>
-                            <br/>
-
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="input-group fg-float">
-                                        <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
-                                        <div class="fg-line">
-                                            <input type="text" class="form-control">
-                                            <label class="fg-label">Full Name</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="input-group fg-float">
-                                        <div class="fg-line">
-                                            <input type="text" class="form-control">
-                                            <label class="fg-label">Location</label>
-                                        </div>
-                                        <span class="input-group-addon last"><i
-                                                class="zmdi zmdi-my-location"></i></span>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="input-group fg-float">
-                                        <span class="input-group-addon"><i class="zmdi zmdi-mail-send"></i></span>
-                                        <div class="fg-line">
-                                            <input type="text" class="form-control">
-                                            <label class="fg-label">Layers</label>
-                                        </div>
-                                        <span class="input-group-addon last"><i class="zmdi zmdi-layers "></i></span>
-                                    </div>
-                                </div>
-                            </div>
+                           
 
 
-                            <br/>
-
-                            <p class="c-black f-500 m-b-5 m-t-20">Different Sizes</p>
-                            <small>You may use the extra sizing classes to change size of the feilds.</small>
-
-                            <br/><br/>
-
-                            <div class="input-group input-group-lg">
-                                <span class="input-group-addon"><i class="zmdi zmdi-sun"></i></span>
-                                <div class="fg-line">
-                                    <input type="text" class="form-control input-lg" placeholder="Weather">
-                                </div>
-                            </div>
-
-                            <br/>
-
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="zmdi zmdi-sun"></i></span>
-                                <div class="fg-line">
-                                    <input type="text" class="form-control" placeholder="Weather">
-                                </div>
-                            </div>
-
-                            <br/>
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon"><i class="zmdi zmdi-sun"></i></span>
-                                <div class="fg-line">
-                                    <input type="text" class="form-control input-sm" placeholder="Weather">
-                                </div>
-                            </div>
                         </div>
-
                         <br/>
+                        <button type="submit" class="btn btn-success btn-block waves-effect">Crear</button>
                     </div>
 <% end %>
 
-
+</div>
 
 
 <%= render "partials/footer" %>
