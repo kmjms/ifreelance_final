@@ -1,10 +1,15 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_freelance
+  before_action :authenticate_freelance!
   # GET /projects
   # GET /projects.json
+
+  current_freelance = Freelance.find(1)
   def index
+    @freelance = current_freelance
     @projects = current_freelance.projects.all
+    @incomes = calculate_all_incomes
+    @expenses = calculate_all_expenses
   end
 
   # GET /projects/1
@@ -95,7 +100,7 @@ class ProjectsController < ApplicationController
     end
 
     def calculate_all_incomes
-        projects = Project.where(freelance_id:current_freelance.id)
+        projects = current_freelance.projects
         total_income = 0
 
         projects.each do |proj|
@@ -106,7 +111,8 @@ class ProjectsController < ApplicationController
     end
 
     def calculate_all_expenses
-      projects = Project.where(freelance_id:current_freelance.id)
+      projects = current_freelance.projects
+        
       total_expenses = 0
 
       projects.each do |proj|
