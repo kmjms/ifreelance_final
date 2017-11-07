@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'home/index'
 
   resources :expenses
-   resources :items
+  resources :items
   resources :projects
  
   #resources :projects do
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :items
   end
 
+  root 'home#index'
 
   resources :type_projects
   resources :states
