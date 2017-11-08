@@ -92,8 +92,7 @@
 
 <!-- Formulario -->
 <%= form_for(@freelance.clients.new) do |f| %>
-<input type="text" name="freelance_id" value="<%= @freelance.id %>" style="display:none">
-<input type="text" name="client_id" value="1" style="display:none">
+<!-- <input type="text" name="freelance_id" value="<%= @freelance.id %>" style="display:none"> -->
 
 <div class="card">
                         <div class="card-header">
@@ -144,6 +143,13 @@
                                     <div class="form-group fg-line">
                                         <label>Contraseña</label>
                                         <input name="password" type="password" class="form-control" placeholder="Contraseña" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group fg-line">
+                                        <label> confirmar Contraseña</label>
+                                        <input name="confirm_password" type="password" class="form-control" placeholder="Contraseña" required>
                                     </div>
                                 </div>
                         </div>

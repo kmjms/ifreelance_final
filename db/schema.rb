@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171025171939) do
+ActiveRecord::Schema.define(version: 20171108195931) do
 
   create_table "clients", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -34,10 +34,10 @@ ActiveRecord::Schema.define(version: 20171025171939) do
   end
 
   create_table "clients_freelances", id: false, force: :cascade do |t|
-    t.integer "client_id", null: false
-    t.integer "freelance_id", null: false
-    t.index ["client_id", "freelance_id"], name: "index_clients_freelances_on_client_id_and_freelance_id"
-    t.index ["freelance_id", "client_id"], name: "index_clients_freelances_on_freelance_id_and_client_id"
+    t.integer "client_id"
+    t.integer "freelance_id"
+    t.index ["client_id"], name: "index_clients_freelances_on_client_id"
+    t.index ["freelance_id"], name: "index_clients_freelances_on_freelance_id"
   end
 
   create_table "expenses", force: :cascade do |t|
