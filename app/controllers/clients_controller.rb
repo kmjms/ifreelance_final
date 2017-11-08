@@ -1,10 +1,12 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_freelance!, only: [:index]
   # GET /clients
   # GET /clients.json
+
   def index
-    @clients = Client.all
+    @freelance = current_freelance
+    @clients = current_freelance.clients
   end
 
   # GET /clients/1
