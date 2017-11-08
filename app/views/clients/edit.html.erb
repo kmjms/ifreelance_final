@@ -1,6 +1,71 @@
-<h1>Editing Client</h1>
+<%= render "partials/header" %>
 
-<%= render 'form', client: @client %>
+
+<%= render "partials/side_freelance" %>
+
+
+<div id="page-content-wrapper"  class=" col-sm-9 col-sm-offset-3">
+<br>
+<br>
+<br>
+
+<div class = "card col-sm-12">
+    <div class = "card-block col-sm-12">
+        <div class = "card-body card-padding col-sm-12">
+            <%= form_for :client, url: client_path(@client), method: :patch do |f| %>
+            
+                    <input type="text" value="<% @client.id%>" style="display:none">
+        
+                <div class = "col-sm-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nombre</label>
+                        <input name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Nombre" value="<%= @client.name %>" required>
+                    </div>
+                </div>
+                                            
+              <div class = "col-sm-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Apellido</label>
+                    <input name="surname" type="text" class="form-control" id="exampleInputEmail1" placeholder="Apellido" value="<%= @client.surname %>" required>
+                </div>
+              </div>
+
+              <div class = "col-sm-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input name="surname" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" value="<%= @client.email%>" required>
+                </div>
+              </div>
+
+              <div class = "col-sm-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nombre usuario</label>
+                    <input name="surname" type="text" class="form-control" id="exampleInputEmail1" placeholder="Usuario" value="<%= @client.username%>" required>
+                </div>
+              </div>
+
+
+              <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+				<div class="btn-group" role="group">
+					<a href="<% clients_path %>" type="button" class="btn btn-default">Cerrar</a>
+				</div>
+    
+				<div class="btn-group" role="group">
+                    
+					<button type="submit"  class="btn btn-default btn-hover-green" data-action="save" role="button">Guardar</button>
+				</div>
+			</div>
+
+            <% end %>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<%= render "partials/footer" %>
+
+
 
 <%= link_to 'Show', @client %> |
 <%= link_to 'Back', clients_path %>

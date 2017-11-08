@@ -27,7 +27,7 @@ class ClientsController < ApplicationController
   # POST /clients.json
   def create
     #newParams = client_params.as_json
-    @client = current_freelance.clients.new(client_params)
+    @client = current_freelance.clients.create(client_params)
 
     #@client = current_freelance.clients
     #@client.name = params[:name]
@@ -50,8 +50,10 @@ class ClientsController < ApplicationController
   # PATCH/PUT /clients/1.json
   def update
     respond_to do |format|
+
+
       if @client.update(client_params)
-        format.html { redirect_to @client, notice: 'Client was successfully updated.' }
+        format.html { redirect_to clients_path, notice: 'Client was successfully updated.' }
         format.json { render :show, status: :ok, location: @client }
       else
         format.html { render :edit }
