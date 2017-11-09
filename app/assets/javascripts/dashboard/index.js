@@ -1,4 +1,11 @@
 
+
+$(document).ready(function(){
+    
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+
 var ctx = document.getElementById("myChart").getContext('2d');
 
 var incomes =  parseFloat(document.getElementById('ingresos').getAttribute('value'))
@@ -68,3 +75,9 @@ var myLine = new Chart(document.getElementById("line-chart"), {
       }
     }
   });
+
+
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+})
+
+
