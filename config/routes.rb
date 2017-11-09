@@ -8,34 +8,24 @@ Rails.application.routes.draw do
 
   get 'home/index'
 
-  resources :expenses
+  resources :expenses,only: [:index,:show,:destroy,:edit,:update]
   resources :items
-  resources :projects
+  resources :projects,only: [:index,:show,:destroy,:edit,:update]
   
   post 'projects/send_bill_by_email'
-  #resources :projects do
-   # get 'view_items/:id', to: 'projects#view_items'
-  #end
-  #resources :projects  do
-    #collection do
-    #  get 'view_items/:id', :to => "projects#view_items"
-   # end
-  #end
-
-  #get 'item/view_by_project/:project_id'
-
+  
   resources :projects do
-    resources :items
+    resources :items,only: [:index,:show,:destroy,:edit,:update]
   end
 
   root 'home#index'
 
-  resources :type_projects
-  resources :states
-  resources :clients
+  resources :type_projects,only: [:index,:show,:destroy,:edit,:update]
+  resources :states,only: [:index,:show,:destroy,:edit,:update]
+  resources :clients,only: [:index,:show,:destroy,:edit,:update]
 
-  devise_for :freelances
-  devise_for :clients
+  devise_for :freelances,only: [:index,:destroy,:edit,:update]
+  devise_for :clients,only: [:index,:destroy,:show,:edit,:update]
 
   get 'payment/response'
   post 'payment/confimation'
