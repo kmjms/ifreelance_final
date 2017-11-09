@@ -19,3 +19,6 @@ Rails.application.config.assets.precompile += %w( new-age.min.css )
 Rails.application.config.assets.precompile += %w(css/simple-line-icons )
 Rails.application.config.assets.precompile += %w( device-mockups.css )
 
+Rails.application.config.assets.precompile += %w( dashboard/index.js )
+
+

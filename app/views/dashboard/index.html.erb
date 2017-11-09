@@ -8,77 +8,19 @@
 <div id="page-content-wrapper"  class=" col-sm-9 col-sm-offset-3">
 
  <section id="main">
-          
+          <div id = "ingresos" value="<%= @incomes %>"></div>
+          <div id = "gastos" value="<%= @expenses %>"></div>
+         <div id = "proyectos" value="<%= @projects.to_json %>"></div>
+
             <section id="content">
                 <div class="container">
                     <div class="block-header">
-                        <h2>Bienvenido <%= @freelance.username %> </h2>
-
-                        <ul class="actions">
-                            <li>
-                                <a href="">
-                                    <i class="zmdi zmdi-trending-up"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <i class="zmdi zmdi-check-all"></i>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="" data-toggle="dropdown">
-                                    <i class="zmdi zmdi-more-vert"></i>
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li>
-                                        <a href="">Refresh</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Manage Widgets</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Widgets Settings</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-
+                        <h2>Bienvenido<strong> <%= @freelance.username %></strong> </h2>
                     </div>
 
                     <div class="card">
                         <div class="card-header">
-                            <h2>Sales Statistics <small>Vestibulum purus quam scelerisque, mollis nonummy metus</small></h2>
-
-                            <ul class="actions">
-                                <li>
-                                    <a href="">
-                                        <i class="zmdi zmdi-refresh-alt"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <i class="zmdi zmdi-download"></i>
-                                    </a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="" data-toggle="dropdown">
-                                        <i class="zmdi zmdi-more-vert"></i>
-                                    </a>
-
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li>
-                                            <a href="">Change Date Range</a>
-                                        </li>
-                                        <li>
-                                            <a href="">Change Graph Type</a>
-                                        </li>
-                                        <li>
-                                            <a href="">Other Settings</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <h2>Estadisticas <small>Asi se han comportado tus Proyectos </small></h2>
                         </div>
 
                         <!--<div class="card-body">
@@ -139,122 +81,28 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="dash-widgets">
-                        <div class="row">
-                            <div class="col-md-4 col-sm-6">
-                                <div id="site-visits" class="dw-item bgm-teal">
-                                    <div class="dwi-header">
-                                        <div class="p-30">
-                                            <div class="dash-widget-visits"></div>
-                                        </div>
-
-                                        <div class="dwih-title">For the past 30 days</div>
-                                    </div>
-
-                                    <div class="list-group lg-even-white">
-                                        <div class="list-group-item media sv-item">
-                                            <div class="pull-right">
-                                                <div class="stats-bar"></div>
-                                            </div>
-                                            <div class="media-body">
-                                                <small>Page Views</small>
-                                                <h3>47,896,536</h3>
-                                            </div>
-                                        </div>
-
-                                        <div class="list-group-item media sv-item">
-                                            <div class="pull-right">
-                                                <div class="stats-bar-2"></div>
-                                            </div>
-                                            <div class="media-body">
-                                                <small>Site Visitors</small>
-                                                <h3>24,456,799</h3>
-                                            </div>
-                                        </div>
-
-                                        <div class="list-group-item media sv-item">
-                                            <div class="pull-right">
-                                                <div class="stats-line"></div>
-                                            </div>
-                                            <div class="media-body">
-                                                <small>Total Clicks</small>
-                                                <h3>13,965</h3>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class = "row">
+                        <div class = "col-sm-12">
+                                <div class = "col-sm-6">
+                            <div class = "card">
+                            <canvas id="myChart" width="400" height="350"></canvas>
+                        </div>
+                        </div>
+                            <div class = "col-sm-6">
+                                <div class = "card">
+                                    <canvas id="line-chart" width="400" height="350"></canvas>
                                 </div>
-                            </div>
-
-                            <div class="col-md-4 col-sm-6">
-                                <div id="pie-charts" class="dw-item bgm-cyan c-white">
-
-                                    <div class="dw-item">
-                                        <div class="dwi-header">
-                                            <div class="dwih-title">Email Statistics</div>
-                                        </div>
-
-                                        <div class="clearfix"></div>
-
-                                        <div class="text-center p-20 m-t-25">
-                                            <div class="easy-pie main-pie" data-percent="75">
-                                                <div class="percent">45</div>
-                                                <div class="pie-title">Total Emails Sent</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="p-t-25 p-b-20 text-center">
-                                            <div class="easy-pie sub-pie-1" data-percent="56">
-                                                <div class="percent">56</div>
-                                                <div class="pie-title">Bounce Rate</div>
-                                            </div>
-                                            <div class="easy-pie sub-pie-2" data-percent="84">
-                                                <div class="percent">84</div>
-                                                <div class="pie-title">Total Opened</div>
-                                            </div>
-                                            <div class="easy-pie sub-pie-2" data-percent="21">
-                                                <div class="percent">21</div>
-                                                <div class="pie-title">Total Ignored</div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="col-md-4 col-sm-6">
-                                <div class="dw-item bgm-lime">
-                                    <div id="weather-widget"></div>
-                                </div>
+                                
                             </div>
                         </div>
-                    </div>
+                      
 
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                             <!-- Recent Items -->
                             <div class="card">
                                 <div class="card-header">
                                     <h2>Lista de Proyectos <small>Lista de proyectos activos</small></h2>
-                                    <ul class="actions">
-                                        <li class="dropdown">
-                                            <a href="" data-toggle="dropdown">
-                                                <i class="zmdi zmdi-more-vert"></i>
-                                            </a>
-
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li>
-                                                    <a href="">Refresh</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">Settings</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">Other Settings</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
                                 </div>
 
                                 <div class="card-body m-t-0">
@@ -278,8 +126,6 @@
                                              
                                             </tr>
                                             <% end %>
-                                            
-        
                                         </tbody>
                                     </table>
                                 </div>
@@ -287,41 +133,19 @@
                             </div>
                         </div>
 
+                        
+
+                        </div>
+
+                      
+                        
                         <div class="col-sm-6">
                           
                             <!-- Recent Posts -->
                             <div class="card">
                                 <div class="card-header">
                                     <h2>Lista de clientes <small>Tus clientes Actuales</small></h2>
-                                    <ul class="actions">
-                                        <li>
-                                            <a href="">
-                                                <i class="zmdi zmdi-refresh-alt"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="zmdi zmdi-download"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="" data-toggle="dropdown">
-                                                <i class="zmdi zmdi-more-vert"></i>
-                                            </a>
-
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li>
-                                                    <a href="">Change Date Range</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">Change Graph Type</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">Other Settings</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                   
                                 </div>
 
                                 <div class="card-body">
@@ -345,7 +169,7 @@
 
                                         <% end%>
                                         
-                                        <a class="view-more" href="">Ver Todos</a>
+                                        <a class="view-more" href="/clients">Ver Todos</a>
                                     </div>
                                 </div>
                             </div>
@@ -354,6 +178,9 @@
                 </div>
             </section>
         </section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<%= javascript_include_tag 'dashboard/index', 'data-turbolinks-track': 'reload' %>
 
 </div>
 
