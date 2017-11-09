@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
   before_action :authenticate_freelance!
   # GET /projects
   # GET /projects.json
+  skip_before_action :verify_authenticity_token
 
   def index
     @freelance = current_freelance
@@ -83,6 +84,14 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def send_bill_by_email
+    project = Project.find(params[:id])
+    client = Client.find(project.client_id)
+  
+    BillMailer.send_bill(project,client).deliver
+    puts 'Ejecutado mailer de pdf'
   end
 
 

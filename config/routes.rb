@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   resources :expenses
   resources :items
   resources :projects
- 
+  
+  post 'projects/send_bill_by_email'
   #resources :projects do
    # get 'view_items/:id', to: 'projects#view_items'
   #end
