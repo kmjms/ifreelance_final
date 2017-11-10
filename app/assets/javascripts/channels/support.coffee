@@ -9,7 +9,9 @@ App.support = App.cable.subscriptions.create {channel:"SupportChannel",id:value}
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel Coffe
+  
     recieveMessage(data)
+   
     return
 
   speak: (message) ->

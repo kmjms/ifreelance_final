@@ -1,5 +1,8 @@
 class SupportsController < ApplicationController
   before_action :set_support, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_freelance!, only: [:create]
+
+  skip_before_action :verify_authenticity_token
 
   # GET /supports
   # GET /supports.json
@@ -24,17 +27,26 @@ class SupportsController < ApplicationController
   # POST /supports
   # POST /supports.json
   def create
-    @support = Support.new(support_params)
+      @support = Support.find_by(client_id:params[:client_id])
 
-    respond_to do |format|
-      if @support.save
-        format.html { redirect_to @support, notice: 'Support was successfully created.' }
-        format.json { render :show, status: :created, location: @support }
-      else
-        format.html { render :new }
-        format.json { render json: @support.errors, status: :unprocessable_entity }
+      if @support == nil
+        @support = Support.new
+        @support.client_id = params[:client_id]
+        @support.freelance_id = current_freelance.id
+
+        if @support.save
+            newAddr = supports_path + '/' + @support.id.to_s
+
+            redirect_to newAddr
+        else
+            render :file => 'public/500.html', status: :unprocessable_entity
+        end
+        return
       end
-    end
+
+      newAddr = supports_path + '/' + @support.id.to_s
+      redirect_to newAddr
+
   end
 
   # PATCH/PUT /supports/1
@@ -69,6 +81,6 @@ class SupportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def support_params
-      params.fetch(:support, {})
+      #params.fetch(:support, {})
     end
 end

@@ -28,5 +28,6 @@
 //= require sweetalert2/dist/sweetalert2.min
 //= require malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min
 //= require app.min
-
+//= require cable
+//= require eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min
 

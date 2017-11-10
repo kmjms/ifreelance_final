@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :expenses
   resources :items
   resources :projects
-  
+  resources :supports,only: [:create,:show,:destroy]
   post 'projects/send_bill_by_email'
   #resources :projects do
    # get 'view_items/:id', to: 'projects#view_items'
@@ -32,6 +32,6 @@ Rails.application.routes.draw do
 
   devise_for :freelances
   devise_for :clients
-
+  mount ActionCable.server => '/cable'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
