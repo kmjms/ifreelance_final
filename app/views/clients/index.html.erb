@@ -4,15 +4,8 @@
 
 <%= render "partials/header" %>
 
-<% if freelance_signed_in? %>
+
 <%= render "partials/side_freelance" %>
-
-    <%else %>
-        <%if client_signed_in? %>
-            <%= render "partials/side_client" %>
-        <% end %>
-<% end %>
-
 
 <div id="page-content-wrapper"  class=" col-sm-9 col-sm-offset-3">
 <br>
@@ -49,14 +42,16 @@
                                         <td><%= cli.username %></td>
                                   
                                         <td>
-                                        <a class="btn bgm-cyan waves-effect" href = "<%= clients_path%>/<%= cli.id%>"><i class="zmdi zmdi-eye"></i></a> 
                                         <a class="btn bgm-teal waves-effect" href = "<%= clients_path%>/<%= cli.id%>/edit"><i class="zmdi zmdi-edit"></i></a> 
                                             <% valuePath = clients_path.to_s + "/" + cli.id.to_s %>
                                          <%= link_to valuePath, class: "btn btn-danger waves-effect", method: :delete,data: { confirm: 'Estas seguro de eliminar?' } do %>
                                             <i class="zmdi zmdi-close"></i>
                                         <% end %>
                                         
+                                        
                                         </td>
+                                                
+                                    
                                     </tr>
                                    
                                 <% end %>
@@ -69,7 +64,8 @@
 
 <!-- Formulario -->
 <%= form_for(@freelance.clients.new) do |f| %>
-<!-- <input type="text" name="freelance_id" value="<%= @freelance.id %>" style="display:none"> -->
+
+ <input type="text" name="freelance_id" value="<%= @freelance.id %>" style="display:none"> 
 
 <div class="card">
                         <div class="card-header">
@@ -134,12 +130,9 @@
                         <button type="submit" class="btn btn-success btn-block waves-effect">Crear</button>
                     </div>
 <% end %>
-
 </div>
 
 </div>
 
 
 <%= render "partials/footer" %>
-
-

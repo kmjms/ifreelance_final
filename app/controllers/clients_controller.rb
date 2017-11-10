@@ -4,6 +4,8 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.json
 
+
+  
   def index
     @freelance = current_freelance
     @clients = current_freelance.clients.all
@@ -27,6 +29,7 @@ class ClientsController < ApplicationController
   # POST /clients.json
   def create
     #newParams = client_params.as_json
+
     @client = current_freelance.clients.create(client_params)
 
     #@client = current_freelance.clients
@@ -74,10 +77,6 @@ class ClientsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client
-      if(params[:id]=='sign_in')
-        redirect_to new_client_session_path
-        return
-      end
       @client = Client.find(params[:id])
     end
 

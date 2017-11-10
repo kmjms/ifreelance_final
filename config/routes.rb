@@ -20,10 +20,10 @@ Rails.application.routes.draw do
 
   resources :type_projects,only: [:index,:show,:destroy,:edit,:update]
   resources :states,only: [:index,:show,:destroy,:edit,:update]
-  resources :clients,only: [:index,:show,:destroy,:edit,:update]
+  resources :clients,only: [:index,:show,:destroy,:edit,:update,:create]
 
   devise_for :freelances
-  devise_for :clients
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

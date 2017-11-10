@@ -1,6 +1,11 @@
 <h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<% if freelance_signed_in? %>
+  <%redirect_to '/projects'%>
+<%end %>
+
+<div class = "container">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
@@ -24,3 +29,7 @@
 <% end %>
 
 <%= render "freelances/shared/links" %>
+</div>
+
+
+

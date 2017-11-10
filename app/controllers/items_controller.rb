@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
     #if params[:project_id] == nil
       @project = Project.find(params[:project_id])
       @items = @project.items.all
+      @items = @project.items.all
      #   else
       #    flash[:notice] = "Proyecto no contiene items"
        #    redirect_to projects_path
