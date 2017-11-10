@@ -27,4 +27,6 @@ Rails.application.config.assets.precompile += %w( supports-show.coffee )
 
 Rails.application.config.assets.precompile += %w( channels/support.js )
 
+Rails.application.config.assets.precompile += %w( sidebar.css )
+
 

@@ -4,8 +4,8 @@ scrollAnimation = ->
   return
 
 window.recieveMessage = (data) ->
-  console.log data.body
-  if data.sender_type == 1
+  console.log data
+  if data.sender_type == true
     $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + data.body + '</p></li>').appendTo $('.messages ul')
     $('.contact.active .preview').html '<span>You: </span>' + message
   else

@@ -1,6 +1,7 @@
 class SupportsController < ApplicationController
   before_action :set_support, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_freelance!, only: [:create]
+  before_action :authenticate_client!, only: [:create_client]
 
   skip_before_action :verify_authenticity_token
 
@@ -13,6 +14,18 @@ class SupportsController < ApplicationController
   # GET /supports/1
   # GET /supports/1.json
   def show
+    if freelance_signed_in?
+      puts 'freelance'
+      @chat_usr_name = current_freelance.username
+      @chat_usr_type = true
+    else 
+      if client_signed_in?
+        @chat_usr_name = current_client.username
+        @chat_usr_type = false
+        else
+          render :file => 'public/401.html', status: 401
+      end
+    end
   end
 
   # GET /supports/new
@@ -44,10 +57,42 @@ class SupportsController < ApplicationController
         return
       end
 
+      if @support.freelance_id == nil
+        @support.update(freelance_id: current_freelance.id)
+      end
+
       newAddr = supports_path + '/' + @support.id.to_s
       redirect_to newAddr
 
   end
+
+  #funcion para el cliente
+    # llamada post
+  def create_client
+    @support = Support.find_by(client_id:current_client.id)
+
+    if @support == nil
+      @support = Support.new
+      @support.client_id = current_client.id
+
+      if @support.save
+          newAddr = supports_path + '/' + @support.id.to_s
+
+          redirect_to newAddr
+      else
+          render :file => 'public/500.html', status: :unprocessable_entity
+      end
+      return
+    end
+
+    newAddr = supports_path + '/' + @support.id.to_s
+    redirect_to newAddr
+
+end
+  
+
+
+
 
   # PATCH/PUT /supports/1
   # PATCH/PUT /supports/1.json

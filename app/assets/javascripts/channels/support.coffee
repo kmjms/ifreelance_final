@@ -15,4 +15,7 @@ App.support = App.cable.subscriptions.create {channel:"SupportChannel",id:value}
     return
 
   speak: (message) ->
-    @perform 'speak',body:message,sender:"1"
+    @perform 'speak',body:message,sender:$('#USER_TYPE').attr('value')
+
+
+
