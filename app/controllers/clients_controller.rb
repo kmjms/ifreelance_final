@@ -74,6 +74,10 @@ class ClientsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client
+      if(params[:id]=='sign_in')
+        redirect_to new_client_session_path
+        return
+      end
       @client = Client.find(params[:id])
     end
 

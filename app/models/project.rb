@@ -20,8 +20,8 @@ class Project < ApplicationRecord
     return project.expenses.sum(:price)
   end
 
-  def self.calculate_all_incomes
-      projects = current_freelance.projects
+  def self.calculate_all_incomes(freelance)
+      projects = freelance.projects
       total_income = 0
 
       projects.each do |proj|
@@ -31,8 +31,8 @@ class Project < ApplicationRecord
       return total_income
   end
 
-  def self.calculate_all_expenses
-    projects = current_freelance.projects
+  def self.calculate_all_expenses(freelance)
+    projects = freelance.projects
       
     total_expenses = 0
 
@@ -43,8 +43,8 @@ class Project < ApplicationRecord
     return total_expenses
   end
   
-  def calculate_all_incomes
-    projects = current_freelance.projects
+  def calculate_all_incomes(freelance)
+    projects = freelance.projects
     total_income = 0
 
     projects.each do |proj|
@@ -54,8 +54,8 @@ class Project < ApplicationRecord
     return total_income
 end
 
-def calculate_all_expenses
-  projects = current_freelance.projects
+def calculate_all_expenses(freelance)
+  projects = freelance.projects
     
   total_expenses = 0
 

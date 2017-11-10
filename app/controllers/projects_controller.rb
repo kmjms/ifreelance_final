@@ -1,17 +1,19 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy,:view_items]
-  before_action :authenticate_freelance!
+  
+
   # GET /projects
   # GET /projects.json
   skip_before_action :verify_authenticity_token
+  before_action :authenticate_freelance!
 
   def index
     @freelance = current_freelance
     @projects = current_freelance.projects.all
     @states = State.all
     @types = Type.all
-    @incomes = calculate_all_incomes
-    @expenses = calculate_all_expenses
+    @incomes = Project.calculate_all_incomes(current_freelance)
+    @expenses = Project.calculate_all_expenses(current_freelance)
 
     respond_to do |format|
       format.html
