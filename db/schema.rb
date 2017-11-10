@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108195931) do
+ActiveRecord::Schema.define(version: 20171110051931) do
 
   create_table "clients", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -38,6 +38,21 @@ ActiveRecord::Schema.define(version: 20171108195931) do
     t.integer "freelance_id"
     t.index ["client_id"], name: "index_clients_freelances_on_client_id"
     t.index ["freelance_id"], name: "index_clients_freelances_on_freelance_id"
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "expenses", force: :cascade do |t|
@@ -79,6 +94,16 @@ ActiveRecord::Schema.define(version: 20171108195931) do
     t.index ["project_id"], name: "index_items_on_project_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer "support_id"
+    t.string "sender_name"
+    t.boolean "sender_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "body"
+    t.index ["support_id"], name: "index_messages_on_support_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -102,6 +127,15 @@ ActiveRecord::Schema.define(version: 20171108195931) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "supports", force: :cascade do |t|
+    t.integer "client_id"
+    t.integer "freelance_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_supports_on_client_id"
+    t.index ["freelance_id"], name: "index_supports_on_freelance_id"
   end
 
   create_table "types", force: :cascade do |t|

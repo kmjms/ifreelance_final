@@ -1,0 +1,111 @@
+<div id='exchange_param' data-action-url="<%= @support.id %>">
+</div>
+
+<!-- Codigo css propio -->
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
+
+<%= stylesheet_link_tag  'supports-show', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<div id="USER_TYPE" value="<%= @chat_usr_type %>"></div>
+
+<% if freelance_signed_in? %>
+<%= render "partials/side_freelance" %>
+
+    <%else %>
+        <%if client_signed_in? %>
+            <%= render "partials/side_client" %>
+        <% end %>
+<% end %>
+
+
+
+<div id="page-content-wrapper"  class=" col-sm-9 col-sm-offset-3">
+
+<div id="frame">
+<div id="sidepanel">
+    <div id="profile">
+        <div class="wrap">
+            <img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
+            <p><%= @chat_usr_name %></p>
+            <i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
+            <div id="status-options">
+                <ul>
+                    <li id="status-online" class="active"><span class="status-circle"></span> <p>Online</p></li>
+                    <li id="status-away"><span class="status-circle"></span> <p>Away</p></li>
+                    <li id="status-busy"><span class="status-circle"></span> <p>Busy</p></li>
+                    <li id="status-offline"><span class="status-circle"></span> <p>Offline</p></li>
+                </ul>
+            </div>
+            <div id="expanded">
+                <label for="twitter"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i></label>
+                <input name="twitter" type="text" value="mikeross" />
+                <label for="twitter"><i class="fa fa-twitter fa-fw" aria-hidden="true"></i></label>
+                <input name="twitter" type="text" value="ross81" />
+                <label for="twitter"><i class="fa fa-instagram fa-fw" aria-hidden="true"></i></label>
+                <input name="twitter" type="text" value="mike.ross" />
+            </div>
+        </div>
+    </div>
+    <div id="search">
+        <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+        <input type="text" placeholder="Search contacts..." />
+    </div>
+    <div id="contacts">
+        <ul>
+            
+        </ul>
+    </div>
+    <div id="bottom-bar">
+        <button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
+        <button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
+    </div>
+</div>
+<div class="content">
+    <div class="contact-profile">
+        <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+        <p> <%= %></p>
+        <div class="social-media">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+             <i class="fa fa-instagram" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div class="messages">
+        <ul>
+            <% @support.messages.each do |mess| %>
+                <% if mess.sender_type == 1 %>
+                    <li class="sent">
+                        <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
+                        <p><%= mess.body %></p>
+                    </li>
+                <% else %>
+                    <li class="replies">
+                        <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+                        <p><%= mess.body %></p>
+                    </li>
+                <% end %>
+            <% end %>
+        </ul>
+    </div>
+    <div class="message-input">
+        <div class="wrap">
+        <input type="text" placeholder="Write your message..." />
+        <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
+        <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+        </div>
+    </div>
+</div>
+</div>
+
+
+</div>
+
+
+<!-- importanto codigo propio -->
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
+
+
+
+<%= javascript_include_tag 'supports-show', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'channels/support', 'data-turbolinks-track': 'reload' %>

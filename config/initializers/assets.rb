@@ -21,4 +21,12 @@ Rails.application.config.assets.precompile += %w( device-mockups.css )
 
 Rails.application.config.assets.precompile += %w( dashboard/index.js )
 
+Rails.application.config.assets.precompile += %w( supports-show.scss )
+
+Rails.application.config.assets.precompile += %w( supports-show.coffee )
+
+Rails.application.config.assets.precompile += %w( channels/support.js )
+
+Rails.application.config.assets.precompile += %w( sidebar.css )
+
 

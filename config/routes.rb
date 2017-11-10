@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :items
   resources :projects,only: [:index,:show,:destroy,:edit,:update]
   
+  
+  resources :supports,only: [:create,:show,:destroy]
   post 'projects/send_bill_by_email'
   
   resources :projects do
@@ -20,8 +22,8 @@ Rails.application.routes.draw do
   resources :states,only: [:index,:show,:destroy,:edit,:update]
   resources :clients,only: [:index,:show,:destroy,:edit,:update]
 
-  devise_for :freelances,only: [:index,:destroy,:edit,:update]
-  devise_for :clients,only: [:index,:destroy,:show,:edit,:update]
+  devise_for :freelances
+  devise_for :clients
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
