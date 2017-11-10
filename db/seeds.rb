@@ -8,8 +8,8 @@
 
 
 # pruebasree
-Client.create(email:"juliangarzon.j@gmail.com",password:"123456")
-Freelance.create(email:"ree@test.com",password:"123456")
+Freelance.create(email:"ree@test.com",password:"123456",username:'AdminFreelance')
+Freelance.find(1).clients.create(email:"jgarzonj@unal.edu.co",password:"123456",username:'julian_cliente')
 
 Type.create(name:"Cotizacion",description:"tipo de prueba")
 Type.create(name:"Diseño",description:"tipo de prueba")
