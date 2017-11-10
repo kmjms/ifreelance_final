@@ -43,6 +43,7 @@
                                   
                                         <td>
                                         <a class="btn bgm-teal waves-effect" href = "<%= clients_path%>/<%= cli.id%>/edit"><i class="zmdi zmdi-edit"></i></a> 
+                                        <a class="btn bgm-teal waves-effect" href = "/supports/<%= cli.id%>"><i class="zmdi zmdi-comment-text-alt"></i></a>
                                             <% valuePath = clients_path.to_s + "/" + cli.id.to_s %>
                                          <%= link_to valuePath, class: "btn btn-danger waves-effect", method: :delete,data: { confirm: 'Estas seguro de eliminar?' } do %>
                                             <i class="zmdi zmdi-close"></i>
