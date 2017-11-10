@@ -32,8 +32,15 @@
 
 <%= render "partials/header" %>
 
-
+<% if freelance_signed_in? %>
 <%= render "partials/side_freelance" %>
+
+    <%else %>
+        <%if client_signed_in? %>
+            <%= render "partials/side_client" %>
+        <% end %>
+<% end %>
+
 
 <div id="page-content-wrapper"  class=" col-sm-9 col-sm-offset-3">
 <br>
