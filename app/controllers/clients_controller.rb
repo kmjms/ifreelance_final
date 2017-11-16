@@ -1,6 +1,8 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_freelance!, only: [:index,:create]
+  before_action :authenticate_client!, only: [:self_view]
+  
   # GET /clients
   # GET /clients.json
 
@@ -72,6 +74,10 @@ class ClientsController < ApplicationController
       format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  
+  def self_view
+      @client = current_client
   end
 
   private

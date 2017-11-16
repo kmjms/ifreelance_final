@@ -1,0 +1,99 @@
+
+
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx -->
+
+<%= render "partials/header" %>
+
+
+<%= render "partials/side_freelance" %>
+
+<div id="page-content-wrapper"  class=" col-sm-9 col-sm-offset-3">
+<br>
+<br>
+<br>
+ <div class="card">
+                        <div class="card-header">
+                            <h2>Cliente <%= @client.name %>
+                                <small>Has sido creado por <%= Freelance.find(@client.freelance_id)</small>
+                            </h2>
+                        </div>
+
+                        <div class="table-responsive">
+                           <h3><%= @client.name %> + <%= @client.surname %></h3>
+                        </div>
+    </div>
+
+<!-- Formulario -->
+<%= form_for(@freelance.clients.new) do |f| %>
+
+ <input type="text" name="freelance_id" value="<%= @freelance.id %>" style="display:none"> 
+
+<div class="card">
+                        <div class="card-header">
+                            <h2>Crear Nuevo
+                                <small>Crea un nuevo proyecto
+                                </small>
+                            </h2>
+                        </div>
+
+                        <div class="card-body card-padding">
+                            
+                            <br/><br/>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                                        <div class="fg-line">
+                                            <input name="name" type="text" class="form-control" placeholder="Nombre" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-sort-amount-desc"></i></span>
+                                        <div class="fg-line">
+                                            <input name="surname" type="text" class="form-control" placeholder="Apellido" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group fg-line">
+                                        <label>Email</label>
+                                        <input name="email" type="email" class="form-control" placeholder="Email" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group fg-line">
+                                        <label>Nombre usuario</label>
+                                        <input name="username" type="text" class="form-control" placeholder="Nombre usuario" required>
+                                    </div>
+                                </div>
+                              
+                                <div class="col-sm-6">
+                                    <div class="form-group fg-line">
+                                        <label>Contraseña</label>
+                                        <input name="password" type="password" class="form-control" placeholder="Contraseña" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group fg-line">
+                                        <label> confirmar Contraseña</label>
+                                        <input name="confirm_password" type="password" class="form-control" placeholder="Contraseña" required>
+                                    </div>
+                                </div>
+                        </div>
+                        <br/>
+                        <button type="submit" class="btn btn-success btn-block waves-effect">Crear</button>
+                    </div>
+<% end %>
+</div>
+
+</div>
+
+
+<%= render "partials/footer" %>
