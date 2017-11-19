@@ -1,7 +1,4 @@
-
-
-
-          <div id = "ingresos" value="<%= @incomes %>"></div>
+  <div id = "ingresos" value="<%= @incomes %>"></div>
           <div id = "gastos" value="<%= @expenses %>"></div>
          <div id = "proyectos" value="<%= @projects.to_json %>"></div>
 
@@ -74,20 +71,7 @@
                             </div>
                         </div>
                     </div>
-                        <div class = "row">
-                        <div class = "col-sm-12">
-                                <div class = "col-sm-6">
-                            <div class = "card">
-                            <canvas id="myChart" width="400" height="350"></canvas>
-                        </div>
-                        </div>
-                            <div class = "col-sm-6">
-                                <div class = "card">
-                                    <canvas id="line-chart" width="400" height="350"></canvas>
-                                </div>
-                                
-                            </div>
-                        </div>
+                       
                       
 
                     <div class="row">
@@ -169,14 +153,3 @@
                         </div>
                     </div>
                 </div>
-            </section>
-        </section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-<%= javascript_include_tag 'dashboard/index', 'data-turbolinks-track': 'reload' %>
-
-</div>
-
-<div class = "row">
-    <%= render "partials/footer" %>
-</div>
