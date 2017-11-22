@@ -3,6 +3,7 @@ class ClientsController < ApplicationController
   before_action :authenticate_freelance!, only: [:index,:create]
   # GET /clients
   # GET /clients.json
+  layout 'dashboard'
 
 
   

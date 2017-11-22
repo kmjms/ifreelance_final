@@ -1,17 +1,13 @@
-<header id="header" class="clearfix" data-ma-theme="blue">
+<header id="header" class="clearfix" data-ma-theme="" style="background:#000">
         <ul class="h-inner">
             
 
             <li class="hi-logo hidden-xs">
-                <a href="/dashboard/index" style="text-transform:none">iFreelance Administrador</a>
+                <a href="/dashboard/index" style="text-transform:none; color:#fff"><img src="/img/logosolo.png" class="img-responsive" style="margin-right:20px; float:left; width:35px; margin-top:-7px
+            " /> iFreelance Administrador</a>
             </li>
 
-            <a href="" style="z-depth:-15000" class = "hi-logo" style = "color:black">
-                            
-                        <%= link_to destroy_freelance_session_path, class:"hi-logo", method: :delete,data: { confirm: 'Estas seguro de cerrar sesion?' } do %>
-                                <i class="zmdi zmdi-close zmdi-hc-2x"></i> Cerrar Sesion
-                    <% end %>  
-                    </a>
+           
 
             <li class="pull-right">
                 <ul class="hi-menu">
