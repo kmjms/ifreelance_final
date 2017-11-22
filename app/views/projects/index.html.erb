@@ -42,8 +42,7 @@
                                         <td width="30%">
                                         <a class="btn bgm-cyan waves-effect" href = "<%= projects_path %>/<%= proj.id%>/items"><i class="zmdi zmdi-collection-item"></i></a> 
                                         
-                            
-                                        <form method="post" action="/projects/send_bill_by_email" style="display:inline">
+                                        <form method="post" action="/projects/send_bill_by_email" style="display:inline" onsubmit="confirmationMessage('Factura enviada exitosamente')">
                                             <input type = "text" name="id" value="<%= proj.id %>" style="display:none">
                                             <button class="btn bgm-teal waves-effect" type="submit"><i class="zmdi zmdi-email"></i></button> 
                                         </form>

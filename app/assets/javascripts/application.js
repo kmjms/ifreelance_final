@@ -26,6 +26,7 @@
 //= require Waves/dist/waves.min
 //= require bootstrap-growl.min
 //= require sweetalert2/dist/sweetalert2.min
+//= require alerts
 //= require malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min
 //= require app.min
 //= require cable
