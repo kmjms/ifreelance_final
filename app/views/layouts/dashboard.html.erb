@@ -19,10 +19,10 @@
 
     </head>
     <body>
-        <%= render "sections/header" %>
+        <%= render "partials/header" %>
 
         <section id="main">
-        <%= render "sections/sidebar" %>
+        <%= render "partials/side_freelance" %>
 
             <%= yield %>
         </section>
@@ -82,7 +82,7 @@
                 <p>Sorry for the inconvenience!</p>
             </div>
         <![endif]-->
-
+        <%= render "partials/footer" %>
         <!-- Javascript Libraries -->
         <script src="/vendors/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
