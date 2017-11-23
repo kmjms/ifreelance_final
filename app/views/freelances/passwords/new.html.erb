@@ -1,17 +1,24 @@
 <div class="login-content">
 <!-- Forgot Password -->
-            <div class="lc-block" id="l-forget-password">
+            <div class="lc-block toggled" id="l-forget-password">
+                
                 <div class="lcb-form">
-                    <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu risus. Curabitur commodo lorem fringilla enim feugiat commodo sed ac lacus.</p>
+                 
+                <div class="col-md-6 col-md-offset-3"><img src="/img/logosolo.png" class="img-responsive" style="margin:0 auto"/>
+                <p class="text-center">iFreelance</p></div><div class="clearfix"></div>    
+               
+                  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+                    <p class="text-left">Escribe el correo con el que te registraste, y enseguida te enviaremos un correo con las instrucciones para recuperar tu contraseña.</p>
 
                     <div class="input-group m-b-20">
                         <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
                         <div class="fg-line">
-                            <input name="freelance[email]" type="text" class="form-control" placeholder="Email Address">
+                            <input name="freelance[email]" type="text" class="form-control" placeholder="Correo Electrónico">
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-login btn-success btn-float"><i class="zmdi zmdi-check"></i></button>
+                    <button type="submit" class="btn btn-login btn-success btn-float" ><i class="zmdi zmdi-check"></i></input>
+                    <% end %>
                 </div>
 
                 <a href="/freelances/sign_in" class="btn btn-success">Ya eres usuario</a>
