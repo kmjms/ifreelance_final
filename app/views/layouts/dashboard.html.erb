@@ -16,15 +16,23 @@
         <!-- CSS -->
         <link href="/css/app_1.min.css" rel="stylesheet">
         <link href="/css/app_2.min.css" rel="stylesheet">
+        <style>
+            #main{
+                padding-bottom:0px;
+                padding-top: 85px;
+            }
+        </style>
 
     </head>
     <body>
         <%= render "partials/header" %>
 
         <section id="main">
+            <div class="container-fluid" style="padding:0px 0px;">
         <%= render "partials/side_freelance" %>
 
             <%= yield %>
+            </div>
         </section>
 
         

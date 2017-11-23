@@ -4,6 +4,7 @@
 <%= render "partials/side_freelance" %>
 
 <div id="page-content-wrapper"  class=" col-sm-9 col-sm-offset-3">
+<<<<<<< HEAD
 <br>
 <br>
 <br>
@@ -67,116 +68,143 @@
                                 </tbody>
                             </table>
                         </div>
-    </div>
-
-<!-- Formulario -->
-<%= form_for(@freelance.projects.new) do |f| %>
-<input type="text" name="freelance_id" value="<%= @freelance.id %>" style="display:none">
-<input type="text" name="client_id" value="1" style="display:none">
-
-<div class="card">
-                        <div class="card-header">
-                            <h2>Crear Nuevo
-                                <small>Crea un nuevo proyecto
-                                </small>
-                            </h2>
-                        </div>
-
-                        <div class="card-body card-padding">
-                            
-                            <br/><br/>
-
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
-                                        <div class="fg-line">
-                                            <input name="name" type="text" class="form-control" placeholder="Nombre" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="zmdi zmdi-sort-amount-desc"></i></span>
-                                        <div class="fg-line">
-                                            <input name="description" type="text" class="form-control" placeholder="Descripcion" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="input-group form-group">
-                                    <label>Fecha Inicio</label>
-                                        <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
-                                        <div class="dtp-container">
-                                            <input name="start_date" type="text" class="form-control date-picker" placeholder="Fecha Inicio">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                
-                                    <div class="input-group form-group">
-                                    <label>Fecha Final</label>
-                                        <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
-                                        <div class="dtp-container">
-                                            <input name="end_date" type="text" class="form-control date-picker" placeholder="Fecha Fin">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group fg-line">
-                                        <label>Precio</label>
-                                        <input name="total_price" type="text" class="form-control input-mask" data-mask="000.000.000.000.000,00" placeholder="$" autocomplete="off">
-                                    </div>
-                                </div>
-                                
-                                 <div class="col-sm-4">
-                        <div class="form-group">
-                <label for="sel1">Cliente</label>
-                <select name="client_id" class="form-control" id="sel1">
-                    <% @freelance.clients.each do |c| %>
-                        <option value="<%=c.id %>"><%=c.username %></option>
-                    <%end%>
-                </select>
-                </div>
-                     </div>
-                      <div class="col-sm-4">
-                      <div class="form-group">
-                <label for="sel1">Estado</label>
-                <select name="state_id" class="form-control" id="sel1"  required>
-                    <% @states.each do |s| %>
-                        <option value="<%=s.id %>"><%=s.name %></option>
-                    <%end%>
-                </select>
-                </div>
-                     </div>
-                      <div class="col-sm-4">
-                      <div class="form-group">
-                <label for="sel1">Tipo</label>
-                <select name="type_id" class="form-control" id="sel1" required>
-                    <% @types.each do |t| %>
-                        <option value="<%=t.id %>"><%=t.name %></option>
-                    <%end%>
-                </select>
-                </div>
-
-                                
+=======
+    <div class="card">
+        <div class="card-header">
+            <h2>Listado de Proyectos
+                <small>Proyectos actuales creados en la plataforma</small>
+            </h2>
         </div>
 
-                           
-                        </div>
-                        <br/>
-                        <button type="submit" class="btn btn-success btn-block waves-effect">Crear</button>
-                    </div>
-<% end %>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Inicio</th>
+                        <th>Fin</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <div id = "MARCA" style="display:none"></div>
+                    <% @projects.each do |proj| %>
+                    <tr>
+                        <td><%= proj.id %></td>
+                        <td><%= proj.name %></td>
+                        <td><%= proj.description %></td>
+                        <td><%= proj.start_date %></td>
+                        <td><%= proj.end_date %></td>
+                        <td>$ <%= proj.total_price %></td>
+
+                        <td width="30%">
+                            <a class="btn bgm-cyan waves-effect" href = "<%= projects_path %>/<%= proj.id%>/items"><i class="zmdi zmdi-collection-item"></i></a> 
+
+                            
+                            <form method="post" action="/projects/send_bill_by_email" style="display:inline">
+                                <input type = "text" name="id" value="<%= proj.id %>" style="display:none">
+                                <button class="btn bgm-teal waves-effect" type="submit"><i class="zmdi zmdi-email"></i></button> 
+                            </form>
+
+                            <a class="btn bgm-teal waves-effect" href = "<%= projects_path%>/<%= proj.id%>/edit"><i class="zmdi zmdi-edit"></i></a> 
+
+                            <a class="btn btn-warning waves-effect" href = "<%= projects_path %>/<%= proj.id%>.pdf"><i class="zmdi zmdi-collection-pdf"></i></a> 
+                            <% valuePath = projects_path.to_s + "/" + proj.id.to_s %>
+                            <%= link_to valuePath, class: "btn btn-danger waves-effect", method: :delete,data: { confirm: 'Estas seguro de eliminar?' } do %>
+                            <i class="zmdi zmdi-close"></i>
+                            <% end %>
+
+
+                        </td>
+
+
+                    </tr>
+
+                    <% end %>
+
+
+                </tbody>
+            </table>
+        </div>
+>>>>>>> d7e100d4c78676474ae655782340bf57582da727
+    </div>
+
+    <div class="card">
+        <!-- Formulario -->
+        <%= form_for(@freelance.projects.new) do |f| %>
+        <input type="text" name="freelance_id" value="<%= @freelance.id %>" style="display:none">
+        <input type="text" name="client_id" value="1" style="display:none">
+
+
+        <div class="card-header">
+            <h2>Crear Nuevo
+                <small>Crea un nuevo proyecto
+                </small>
+            </h2>
+        </div>
+
+        <div class="card-body card-padding">
+
+            <div class="form-group fg-line">
+                <label for="exampleInputEmail1">Nombre</label>
+                <input name="name" type="text" class="form-control input-sm" id="exampleInputEmail1" placeholder="Ingrese el nombre">
+            </div>
+            <div class="form-group fg-line">
+                <label for="exampleInputEmail1">Descripción</label>
+                <textarea name="description" type="text" class="form-control input-sm" id="exampleInputEmail1" placeholder="Ingrese la descripción"></textarea>
+            </div>
+            <div class="form-group fg-line">
+                <label for="exampleInputEmail1">Fecha inicio</label>
+                <input name="start_date" type="date" class="form-control input-sm " id="exampleInputEmail1" placeholder="">
+            </div>
+            <div class="form-group fg-line">
+                <label for="exampleInputEmail1">Fecha final</label>
+                <input name="end_date" type="date" class="form-control input-sm " id="exampleInputEmail1" placeholder="">
+            </div>
+            <div class="form-group fg-line">
+                <label for="exampleInputEmail1">Precio</label>
+                <input name="total_price" type="text" class="form-control input-sm input-mask" id="exampleInputEmail1" data-mask="000.000.000.000.000,00" placeholder="Ingrese el precio">
+            </div>
+            <div class="form-group fg-line">
+                <label for="exampleInputEmail1">Cliente</label>
+                <select name="client_id" class="form-control input-sm" id="exampleInputEmail1" placeholder="">
+                    <option value="" selected="" disabled="">Selecciona el cliente</option>
+                    <% @freelance.clients.each do |c| %>
+                    <option value="<%=c.id %>"><%=c.username %></option>
+                    <%end%>
+                </select>
+            </div>
+            <div class="form-group fg-line">
+                <label for="exampleInputEmail1">Estado</label>
+                <select name="state_id" class="form-control input-sm" id="exampleInputEmail1" placeholder="">
+                    <option value="" selected="" disabled="">Selecciona el Estado</option>
+                    <% @states.each do |s| %>
+                    <option value="<%=s.id %>"><%=s.name %></option>
+                    <%end%>
+                </select>
+            </div>
+            <div class="form-group fg-line">
+                <label for="exampleInputEmail1">Tipo</label>
+                <select name="type_id" class="form-control input-sm" id="exampleInputEmail1" placeholder="">
+                    <option value="" selected="" disabled="">Selecciona el Tipo</option>
+                    <% @types.each do |t| %>
+                    <option value="<%=t.id %>"><%=t.name %></option>
+                    <%end%>
+                </select>
+            </div>            
+            <br/>
+            <button type="submit" class="btn btn-success btn-block waves-effect">Crear</button>
+        </div>
+        <% end %>
+
+    </div>
 
 </div>
 
-</div>
 
 
-<%= render "partials/footer" %>
 

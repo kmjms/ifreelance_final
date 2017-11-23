@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy,:view_items]
-  
+  layout 'dashboard'
 
   # GET /projects
   # GET /projects.json

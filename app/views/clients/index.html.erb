@@ -1,6 +1,5 @@
-
-
 <div id="page-content-wrapper"  class=" col-sm-9 col-sm-offset-3">
+<<<<<<< HEAD
 <br>
 <br>
 <br>
@@ -57,76 +56,89 @@
                                 </tbody>
                             </table>
                         </div>
+=======
+    <div class="card">
+        <div class="card-header">
+            <h2>Lista de Clientes
+                <small>Clientes Actualmente creados por el usuario</small>
+            </h2>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Nombre usuario</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <div id= "MARCA" style="display:none"></div>
+                    <% @clients.each do |cli| %>
+                    <tr>
+                        <td><%= cli.id %></td>
+                        <td><%= cli.name %></td>
+                        <td><%= cli.surname %></td>
+                        <td><%= cli.email %></td>
+                        <td><%= cli.username %></td>
+                        <td>
+                            <a class="btn bgm-teal waves-effect" href = "<%= clients_path%>/<%= cli.id%>/edit"><i class="zmdi zmdi-edit"></i></a> 
+                            <% valuePath= clients_path.to_s + "/" + cli.id.to_s %>
+                            <%= link_to valuePath, class: "btn btn-danger waves-effect", method: :delete,data: { confirm: 'Estas seguro de eliminar?' } do %>
+                            <i class="zmdi zmdi-close"></i>
+                            <% end %>
+                        </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+>>>>>>> d7e100d4c78676474ae655782340bf57582da727
     </div>
-
-<!-- Formulario -->
-<%= form_for(@freelance.clients.new) do |f| %>
-
- <input type="text" name="freelance_id" value="<%= @freelance.id %>" style="display:none"> 
-
-<div class="card">
-                        <div class="card-header">
-                            <h2>Crear Nuevo
-                                <small>Crea un nuevo proyecto
-                                </small>
-                            </h2>
-                        </div>
-
-                        <div class="card-body card-padding">
-                            
-                            <br/><br/>
-
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
-                                        <div class="fg-line">
-                                            <input name="name" type="text" class="form-control" placeholder="Nombre" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="zmdi zmdi-sort-amount-desc"></i></span>
-                                        <div class="fg-line">
-                                            <input name="surname" type="text" class="form-control" placeholder="Apellido" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group fg-line">
-                                        <label>Email</label>
-                                        <input name="email" type="email" class="form-control" placeholder="Email" required>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group fg-line">
-                                        <label>Nombre usuario</label>
-                                        <input name="username" type="text" class="form-control" placeholder="Nombre usuario" required>
-                                    </div>
-                                </div>
-                              
-                                <div class="col-sm-6">
-                                    <div class="form-group fg-line">
-                                        <label>Contraseña</label>
-                                        <input name="password" type="password" class="form-control" placeholder="Contraseña" required>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group fg-line">
-                                        <label> confirmar Contraseña</label>
-                                        <input name="confirm_password" type="password" class="form-control" placeholder="Contraseña" required>
-                                    </div>
-                                </div>
-                        </div>
-                        <br/>
-                        <button type="submit" class="btn btn-success btn-block waves-effect">Crear</button>
-                    </div>
-<% end %>
+    <div class="card">
+        <!-- Formulario -->
+        <%= form_for(@freelance.clients.new) do |f| %>
+        <input type="text" name="freelance_id" value="<%= @freelance.id %>" style="display:none"> 
+        <div class="card-header">
+            <h2>Crear Nuevo
+                <small>Crea un nuevo cliente
+                </small>
+            </h2>
+        </div>
+        <div class="card-body card-padding">
+            <div class="form-group fg-line">
+                <label for="exampleInputEmail1">Nombre</label>
+                <input name="name" type="text" class="form-control input-sm" id="exampleInputEmail1" placeholder="Ingrese el nombre">
+            </div>
+            <div class="form-group fg-line">
+                <label for="exampleInputEmail1">Apellido</label>
+                <input name="surname" type="text" class="form-control input-sm" id="exampleInputEmail1" placeholder="Ingrese el apellido">
+            </div>
+            <div class="form-group fg-line">
+                <label for="exampleInputEmail1">Correo Electrónico</label>
+                <input name="email" type="email" class="form-control input-sm" id="exampleInputEmail1" placeholder="Ingrese el correo electrónico">
+            </div>
+            <div class="form-group fg-line">
+                <label for="exampleInputEmail1">Nombre de usuario</label>
+                <input name="username" type="text" class="form-control input-sm" id="exampleInputEmail1" placeholder="Ingrese el nombre de usuario">
+            </div>
+            <div class="form-group fg-line">
+                <label for="exampleInputEmail1">Contraseña</label>
+                <input name="password" type="password" class="form-control input-sm" id="exampleInputEmail1" placeholder="Ingrese la contraseña">
+            </div>
+            <div class="form-group fg-line">
+                <label for="exampleInputEmail1">Confirmar contraseña</label>
+                <input name="confirm_password" type="password" class="form-control input-sm" id="exampleInputEmail1" placeholder="Confirme la contraseña">
+            </div>
+        </div>
+        <br/>
+        <button type="submit" class="btn btn-success btn-block waves-effect">Crear</button>
+    </div>
+    <% end %>
 </div>
 
-</div>
+
+
