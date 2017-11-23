@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   end
   
   def logout
-    reset_session
+    sign_out :freelance 
     redirect_to "/"
   end
 end

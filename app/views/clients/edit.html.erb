@@ -14,7 +14,7 @@
         <div class = "card-body card-padding col-sm-12">
             <%= form_for :client, url: client_path(@client), method: :patch do |f| %>
             
-                    <input type="text" value="<% @client.id%>" style="display:none">
+                    <input name="id" type="text" value="<% @client.id%>" style="display:none">
         
                 <div class = "col-sm-6">
                     <div class="form-group">
