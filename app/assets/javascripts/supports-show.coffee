@@ -2,25 +2,27 @@
 scrollAnimation = ->
   $('.messages').animate { scrollTop: $(document).height() }, 'fast'
   return
-
+                               
+                                       
+                                  
 window.recieveMessage = (data) ->
   console.log data
   if data.sender_type == true
-    $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + data.body + '</p></li>').appendTo $('.messages ul')
-    $('.contact.active .preview').html '<span>You: </span>' + message
-  else
-    $('<li class="replies"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + data.body + '</p></li>').appendTo $('.messages ul')
+    $('<div class="mblm-item mblm-item-left"><div>' + data.body  + '</div><small>' + data.created_at + '</small></div>').appendTo $('.messages ul')
   
-  $('.message-input input').val null
+  else
+    $('<div class="mblm-item mblm-item-right"><div>' + data.body  + '</div><small>' + data.created_at + '</small></div>').appendTo $('.messages ul')
+  
+  $('.message-input textarea').val null
   $('.messages').animate { scrollTop: $(document).height() }, 'fast'
   return
 
 window.sendMessage = ->
-  message = $('.message-input input').val()
+  message = $('.message-input textarea').val()
   if $.trim(message) == ''
     return false
   App.support.speak message , 1
-  $('.message-input input').val null
+  $('.message-input textarea').val null
   scrollAnimation()
 
 

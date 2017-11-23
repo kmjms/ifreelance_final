@@ -14,6 +14,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
 Rails.application.config.assets.precompile += %w(new-age.min.js )
+Rails.application.config.assets.precompile += %w(cable.js )
 Rails.application.config.assets.precompile += %w( new-age.min.css )
 
 Rails.application.config.assets.precompile += %w(css/simple-line-icons )

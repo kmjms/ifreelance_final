@@ -34,7 +34,7 @@
                             <header class="mb-header">
                                 <div class="mbh-user clearfix">
                                     
-                                    <div class="p-t-5" style="text-transform: uppercase;">{{$solicitud->titulo}} <strong>POR: {{User::find($solicitud->id_user)->name}}</strong></div>
+                                    <div class="p-t-5" style="text-transform: uppercase;">CHAT DE SOPORTE  <strong><%= @chat_usr_name %></strong></div>
                                 </div>
 
                                 <ul class="actions">
@@ -69,8 +69,28 @@
                             </header>
 
                             <div class="panel-mensajes" id="panel-mensajes" style="    height: 70%;   overflow-y: overlay; padding: 20 20 0 20">
-
-                                                       
+                                
+                                 <% @support.messages.each do |mess| %>
+                                    <% if mess.sender_type == 1 %>
+                                        <div class="mblm-item mblm-item-left">
+                                        <div>
+                                            <%= mess.body %>
+                                        </div>
+                                        <small><%= mess.created_at.to_formatted_s(:short) %></small>
+                                        </div>
+                                
+                                       
+                                    <% else %>
+                                        <div class="mblm-item mblm-item-right">
+                                        <div>
+                                            <%= mess.body %>
+                                        </div>
+                                        <small><%= mess.created_at.to_formatted_s(:short) %></small>
+                                        </div>
+                                    <% end %>
+                                    <% end %>
+            
+                                     <!--                  
                                 <div class="mblm-item mblm-item-left">
                                         <div>
                                             {{$mensaje->contenido}}
@@ -84,26 +104,24 @@
                                         </div>
                                         <small>{{$mensaje->created_at}}</small>
                                     </div>
-                                                           
-                                <div class="mblm-item mblm-item-right">
-                                        <div>
-                                            {{$mensaje->contenido}}
-                                        </div>
-                                        <small>{{$mensaje->created_at}}</small>
-                                </div>
-                                
-                                <div class="mblm-item mblm-item-left">
-                                        <div>
-                                            {{$mensaje->contenido}}
-                                        </div>
-                                        <small>{{$mensaje->created_at}}</small>
-                                    </div>
-                                
+                                          -->                 
                             </div>
                             
 
                                 <div class="mbl-compose">
-                                <form action="{{ route('chat-input') }}" method="post">
+                                    
+                                 <div class="message-input">
+                                    <div class="wrap">
+                                        
+                                    <textarea name="contenido" placeholder="Escribe un mensaje..." style="width:90%"></textarea>
+                                    
+                                    <button class="submit" id="btn-sbumit-chat" type="submit"><i class="zmdi zmdi-mail-send"></i></button>
+                                  <!--  <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button> -->
+                                    
+                                    </div>
+                                </div>
+                                    
+                               <!-- <form action="{{ route('chat-input') }}" method="post">
                                     
                                     <input type="text" name="idsolicitud" value="{{$idsolicitud}}" hidden="">
                             
@@ -114,7 +132,18 @@
                                     
                                     <textarea name="contenido" placeholder="Escribe un mensaje..." style="width: 90%"></textarea>
                                     <button id="btn-sbumit-chat" type="submit" onclick="$('#btn-sbumit-chat').hide()"><i class="zmdi zmdi-mail-send"></i></button>
-                                    </form>                                    
+                                    </form>      -->
+                                    <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+                                    <!--
+                                        <div class="message-input">
+        <div class="wrap">
+        <input type="text" placeholder="Write your message..." />
+        <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
+        <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+        </div>
+    </div>
+                                    
+                                    -->
                                 </div>
                             </div>
                         </div>
@@ -125,91 +154,13 @@
 
 
 
-<div id="frame">
-<div id="sidepanel">
-    <div id="profile">
-        <div class="wrap">
-            <img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
-            <p><%= @chat_usr_name %></p>
-            <i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
-            <div id="status-options">
-                <ul>
-                    <li id="status-online" class="active"><span class="status-circle"></span> <p>Online</p></li>
-                    <li id="status-away"><span class="status-circle"></span> <p>Away</p></li>
-                    <li id="status-busy"><span class="status-circle"></span> <p>Busy</p></li>
-                    <li id="status-offline"><span class="status-circle"></span> <p>Offline</p></li>
-                </ul>
-            </div>
-            <div id="expanded">
-                <label for="twitter"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i></label>
-                <input name="twitter" type="text" value="mikeross" />
-                <label for="twitter"><i class="fa fa-twitter fa-fw" aria-hidden="true"></i></label>
-                <input name="twitter" type="text" value="ross81" />
-                <label for="twitter"><i class="fa fa-instagram fa-fw" aria-hidden="true"></i></label>
-                <input name="twitter" type="text" value="mike.ross" />
-            </div>
-        </div>
-    </div>
-    <div id="search">
-        <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-        <input type="text" placeholder="Search contacts..." />
-    </div>
-    <div id="contacts">
-        <ul>
-            
-        </ul>
-    </div>
-    <div id="bottom-bar">
-        <button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
-        <button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
-    </div>
-</div>
-<div class="content">
-    <div class="contact-profile">
-        <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-        <p> <%= %></p>
-        <div class="social-media">
-            <i class="fa fa-facebook" aria-hidden="true"></i>
-            <i class="fa fa-twitter" aria-hidden="true"></i>
-             <i class="fa fa-instagram" aria-hidden="true"></i>
-        </div>
-    </div>
-    <div class="messages">
-        <ul>
-            <% @support.messages.each do |mess| %>
-                <% if mess.sender_type == 1 %>
-                    <li class="sent">
-                        <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                        <p><%= mess.body %></p>
-                    </li>
-                <% else %>
-                    <li class="replies">
-                        <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                        <p><%= mess.body %></p>
-                    </li>
-                <% end %>
-            <% end %>
-        </ul>
-    </div>
-    <div class="message-input">
-        <div class="wrap">
-        <input type="text" placeholder="Write your message..." />
-        <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-        <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-        </div>
-    </div>
-</div>
-</div>
-
-
-</div>
-
-
 <!-- importanto codigo propio -->
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
 <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
 
 
 
+<%= javascript_include_tag 'cable', 'data-turbolinks-track': 'reload' %>
 <%= javascript_include_tag 'supports-show', 'data-turbolinks-track': 'reload' %>
+
 <%= javascript_include_tag 'channels/support', 'data-turbolinks-track': 'reload' %>
