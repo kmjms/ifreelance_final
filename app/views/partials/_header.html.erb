@@ -6,6 +6,9 @@
                 <a href="/dashboard/index" style="text-transform:none; color:#fff"><img src="/img/logosolo.png" class="img-responsive" style="margin-right:20px; float:left; width:35px; margin-top:-7px
             " /> iFreelance Administrador</a>
             </li>
+            <%= form_for("freelances", url: destroy_freelance_session_path, html: { method: :delete }) do |f| %>
+  <input type="submit" value="Cerrar Sesión" style="background: none;  border: none;float: right;   color: #fff;" />
+<% end %>
 
            
 

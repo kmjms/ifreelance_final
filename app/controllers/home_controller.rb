@@ -4,7 +4,10 @@ class HomeController < ApplicationController
   end
   
   def logout
-    sign_out :freelance 
+    destroy_user_session_path
+    sign_out current_user 
+    sign_out current_freelance
+    sign_out current_client 
     redirect_to "/"
   end
 end

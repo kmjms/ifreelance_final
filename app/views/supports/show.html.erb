@@ -2,23 +2,128 @@
 </div>
 
 <!-- Codigo css propio -->
-<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
-
-<%= stylesheet_link_tag  'supports-show', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-<div id="USER_TYPE" value="<%= @chat_usr_type %>"></div>
-
-<% if freelance_signed_in? %>
-<%= render "partials/side_freelance" %>
-
-    <%else %>
-        <%if client_signed_in? %>
-            <%= render "partials/side_client" %>
-        <% end %>
-<% end %>
 
 
-<div id="page-content-wrapper"  class=" col-sm-9 col-sm-offset-3">
+<style> 
+.mblm-item-right>div {
+    background-color: #e91e63!important;
+    color: #fff;
+}
+</style>
+<style>
+    .checkbox input:checked+.input-helper:before {
+        background-color: #E91E63!important;
+    }
+    .checkbox input:checked+.input-helper:before, .radio input:checked+.input-helper:before {
+        border-color: #e91e63;
+    }
+    .radio .input-helper:after {
+        background: #e91e63;
+    }
+    .btn-file{
+        background: #e91e63!important;
+    }
+</style>
+<section id="content">
+                <div class="container">
+<div class="container container-alt">
+                    <div class="messages card">
+                        
+
+                        <div class="m-body" style="padding-left: 0px">
+                            <header class="mb-header">
+                                <div class="mbh-user clearfix">
+                                    
+                                    <div class="p-t-5" style="text-transform: uppercase;">{{$solicitud->titulo}} <strong>POR: {{User::find($solicitud->id_user)->name}}</strong></div>
+                                </div>
+
+                                <ul class="actions">
+                                    <li>
+                                        <a href="">
+                                            <i class="zmdi zmdi-refresh-alt"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="" data-toggle="dropdown">
+                                            <i class="zmdi zmdi-more-vert"></i>
+                                        </a>
+
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li>
+                                                <a href="">Contact Info</a>
+                                            </li>
+                                            <li>
+                                                <a href="">Mute</a>
+                                            </li>
+                                            <li>
+                                                <a href="">Clear Messages</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </header>
+
+                            <div class="panel-mensajes" id="panel-mensajes" style="    height: 70%;   overflow-y: overlay; padding: 20 20 0 20">
+
+                                                       
+                                <div class="mblm-item mblm-item-left">
+                                        <div>
+                                            {{$mensaje->contenido}}
+                                        </div>
+                                        <small>{{$mensaje->created_at}}</small>
+                                </div>
+                               
+                                <div class="mblm-item mblm-item-right">
+                                        <div>
+                                            {{$mensaje->contenido}}
+                                        </div>
+                                        <small>{{$mensaje->created_at}}</small>
+                                    </div>
+                                                           
+                                <div class="mblm-item mblm-item-right">
+                                        <div>
+                                            {{$mensaje->contenido}}
+                                        </div>
+                                        <small>{{$mensaje->created_at}}</small>
+                                </div>
+                                
+                                <div class="mblm-item mblm-item-left">
+                                        <div>
+                                            {{$mensaje->contenido}}
+                                        </div>
+                                        <small>{{$mensaje->created_at}}</small>
+                                    </div>
+                                
+                            </div>
+                            
+
+                                <div class="mbl-compose">
+                                <form action="{{ route('chat-input') }}" method="post">
+                                    
+                                    <input type="text" name="idsolicitud" value="{{$idsolicitud}}" hidden="">
+                            
+                                    <input type="text" name="tipo" value="{{ADMIN}}" hidden="">
+                                    
+                                    
+                                    <input type="text" name="tipo" value="{{USUARIO}}" hidden="">
+                                    
+                                    <textarea name="contenido" placeholder="Escribe un mensaje..." style="width: 90%"></textarea>
+                                    <button id="btn-sbumit-chat" type="submit" onclick="$('#btn-sbumit-chat').hide()"><i class="zmdi zmdi-mail-send"></i></button>
+                                    </form>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</section>
+
+
+
 
 <div id="frame">
 <div id="sidepanel">

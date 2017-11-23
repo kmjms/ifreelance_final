@@ -66,16 +66,16 @@
 
                                 <li><a class="page-scroll" href="/dashboard/index">Panel de Control</a></li>
 
-                                <li><%= link_to '/freelances/sign_out', class: "page-scroll", method: :delete do %>
-                                           Cerrar Session    
-                                        <% end %></li>
+                                <li><%= form_for("freelances", url: destroy_freelance_session_path, html: { method: :delete }) do |f| %>
+  <a style="   "><input type="submit" value="Cerrar Sesión" style="background: none;  border: none; font-size: 11px;    font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';    letter-spacing: 2px;    text-transform: uppercase;    padding-top: 15px;    padding-bottom: 15px;" /></a>
+<% end %></li>
                                      <% else %>
                                      <%if client_signed_in? %>
                                         <li><a class="page-scroll"> <%= current_client.email  %></a></li>
                                         <li><a class="page-scroll" href="/clients/client_view">Pagina Administrativa</a></li>
-                                       <li> <%= link_to destroy_client_session_path, class: "page-scroll", method: :delete,data: { confirm: 'Estas seguro de salir?' } do %>
-                                                Cerrar sesion
-                                        <% end %></li>
+                                       <li> <%= form_for("clients", url: destroy_client_session_path, html: { method: :delete }) do |f| %>
+  <a style="   "><input type="submit" value="Cerrar Sesión" style="background: none;  border: none; font-size: 11px;    font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';    letter-spacing: 2px;    text-transform: uppercase;    padding-top: 15px;    padding-bottom: 15px;" /></a>
+<% end %></li>
                                         <% else %>
                                             <li><%= link_to "login freelance", new_freelance_session_path %></li>
                                             <li><%= link_to "login client", new_client_session_path %></li>

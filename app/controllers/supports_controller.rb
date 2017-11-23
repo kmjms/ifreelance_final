@@ -4,6 +4,7 @@ class SupportsController < ApplicationController
   before_action :authenticate_client!, only: [:create_client]
 
   skip_before_action :verify_authenticity_token
+  layout 'dashboard'
 
   # GET /supports
   # GET /supports.json
