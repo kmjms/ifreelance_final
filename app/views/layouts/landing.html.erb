@@ -72,20 +72,17 @@
                                      <% else %>
                                      <%if client_signed_in? %>
                                         <li><a class="page-scroll"> <%= current_client.email  %></a></li>
-                                        <li><a class="page-scroll" href="/clients/client_view">Pagina Administrativa</a></li>
-                                       <li> <%= form_for("clients", url: destroy_client_session_path, html: { method: :delete }) do |f| %>
+                                        <li><a class="page-scroll" href="/clients/client_view">Panel de Control</a></li>
+                                       <li> <%= form_for("clients", url: destroy_freelance_session_path, html: { method: :delete }) do |f| %>
   <a style="   "><input type="submit" value="Cerrar Sesión" style="background: none;  border: none; font-size: 11px;    font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';    letter-spacing: 2px;    text-transform: uppercase;    padding-top: 15px;    padding-bottom: 15px;" /></a>
 <% end %></li>
                                         <% else %>
-                                            <li><%= link_to "login freelance", new_freelance_session_path %></li>
-                                            <li><%= link_to "login client", new_client_session_path %></li>
+                                            <li><%= link_to "Freelancers", new_freelance_session_path %></li>
+                                            <li><%= link_to "Clientes", new_client_session_path %></li>
                                             <li>
                                 <a class="page-scroll" href="#features">Herramientas</a>
                             </li>
-                            <li>
-                                <a class="page-scroll" href="/contacto">Contacto</a>
-        
-                            </li>
+                            
                                      <% end %>
                                      
                                 <% end %>
@@ -103,7 +100,7 @@
                             <div class="header-content" style="margin-top:40vh;margin-bottom:40vh;">
                                 <div class="header-content-inner">
                                     <h1 style="color:#FFF">Bienvenido a iFreelance</h1>
-                                    <a href="#download" class="btn btn-outline btn-xl page-scroll">Comienza ahora gratis!</a>
+                                    <a href="/freelances/sign_up" class="btn btn-outline btn-xl page-scroll">Comienza ahora gratis!</a>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +113,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
-                            <h2 class="section-heading">Ahora encuentranos en nuestra aplicación móvil.</h2>
+                            <h2 class="section-heading">Muy pronto encuentranos en nuestra aplicación móvil.</h2>
                             <p>Porqué sabemos que un Freelance no se puede quedar en una oficina!</p>
                             <div class="badges">
                                 <a class="badge-link" href="#"><img src="img/google-play-badge.svg" alt=""></a>
@@ -198,7 +195,7 @@
                 <div class="cta-content">
                     <div class="container">
                         <h2>Busca tu libertad.<br>Nosotros te ayudamos.</h2>
-                        <a href="#contact" class="btn btn-outline btn-xl page-scroll">Quiero comenzar ahora!</a>
+                        <a href="/freelances/sign_up" class="btn btn-outline btn-xl page-scroll">Quiero comenzar ahora!</a>
                     </div>
                 </div>
                 <div class="overlay"></div>
