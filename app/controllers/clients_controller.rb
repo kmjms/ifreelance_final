@@ -1,6 +1,9 @@
 class ClientsController < ApplicationController
-  before_action :set_client, only: [:show, :edit, :update, :destroy]
+  before_action :set_client, only: [:details]
   before_action :authenticate_freelance!, only: [:index,:create]
+  before_action :authenticate_client!, only: [:client_view]
+
+  skip_before_action :verify_authenticity_token
   # GET /clients
   # GET /clients.json
   layout 'dashboard'
@@ -14,12 +17,13 @@ class ClientsController < ApplicationController
 
   # GET /clients/1
   # GET /clients/1.json
-  def show
-  end
 
   # GET /clients/new
   def new
     @client = Client.new
+  end
+
+  def details
   end
 
   # GET /clients/1/edit
@@ -75,10 +79,15 @@ class ClientsController < ApplicationController
     end
   end
 
+  def client_view
+      @client = current_client
+      @freelances = current_client.freelances
+      @supports = Support.where(client_id:current_client.id)
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client
-      @client = Client.find(params[:id])
+        @client = Client.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

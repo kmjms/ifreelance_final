@@ -1,5 +1,6 @@
 value = $('#exchange_param').data('action-url')
 
+
 App.support = App.cable.subscriptions.create {channel:"SupportChannel",id:value},
   connected: ->
     # Called when the subscription is ready for use on the server

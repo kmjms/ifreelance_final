@@ -1,39 +1,38 @@
 <div class="login-content">
     
-            <!-- Register -->
-            <div class="lc-block toggled" id="l-register">
-                <div class="col-md-6 col-md-offset-3"><img src="/img/logosolo.png" class="img-responsive" style="margin:0 auto"/>
-                <p class="text-center">iFreelance</p></div>
-                <div class="lcb-form">
-                  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <!-- Register -->
+    <div class="lc-block toggled" id="l-register">
+        <div class="col-md-6 col-md-offset-3"><img src="/img/logosolo.png" class="img-responsive" style="margin:0 auto"/>
+        <p class="text-center">iFreelance</p></div>
+        <div class="lcb-form">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-                    <div class="input-group m-b-20">
-                        <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
-                        <div class="fg-line">
-                            <input name="freelance[email]" type="text" class="form-control" placeholder="Correo electrónico">
-                        </div>
-                    </div>
-
-                    <div class="input-group m-b-20">
-                        <span class="input-group-addon"><i class="zmdi zmdi-male"></i></span>
-                        <div class="fg-line">
-                            <input name="freelance[password]" type="password" class="form-control" placeholder="Contraseña">
-                        </div>
-                    </div>
-                    <div class="input-group m-b-20">
-                        <span class="input-group-addon"><i class="zmdi zmdi-male"></i></span>
-                        <div class="fg-line">
-                            <input name="freelance[password_confirmation]" type="password" class="form-control" placeholder="Confirmar contraseña">
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-login btn-success btn-float"><i class="zmdi zmdi-check"></i></a>
-                    <% end %>
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+                <div class="fg-line">
+                    <input name="freelance[email]" type="text" class="form-control" placeholder="Correo electrónico">
                 </div>
-
-               <a href="/freelances/sign_in" class="btn btn-success">Ya eres usuario</a>
-                    <a href="/freelances/password/new" class="btn btn-warning">Olvide la contraseña</a>
             </div>
 
-          
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-male"></i></span>
+                <div class="fg-line">
+                    <input name="freelance[password]" type="password" class="form-control" placeholder="Contraseña">
+                </div>
+            </div>
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-male"></i></span>
+                <div class="fg-line">
+                    <input name="freelance[password_confirmation]" type="password" class="form-control" placeholder="Confirmar contraseña">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-login btn-success btn-float"><i class="zmdi zmdi-check"></i></a>
+            <% end %>
         </div>
+
+        <a href="/freelances/sign_in" class="btn btn-success">Ya eres usuario</a>
+            <a href="/freelances/password/new" class="btn btn-warning">Olvide la contraseña</a>
+    </div>
+
+</div>

@@ -43,18 +43,53 @@
         </div>
 
               <%else%>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
+
+                <%if client_signed_in? %>
+
+                          <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#features">Caracteristicas/a>
+              <a class="nav-link js-scroll-trigger" href=""><%= current_client.username%></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="<%= new_freelance_session_path %>">Ingresar
-                <i class="zmdi zmdi-account"></i>
+              <a class="nav-link js-scroll-trigger" href="dashboard/index">
+                <i class="zmdi zmdi-view-dashboard"></i>
               </a>
+            </li>
+            <li class="nav-item">
+              
+              <%= link_to destroy_client_session_path, class: "nav-link js-scroll-trigger", method: :delete,data: { confirm: 'Estas seguro de cerrar sesion?' } do %>
+                        <i class="zmdi zmdi-close"></i>
+              <% end %>                      
             </li>
           </ul>
         </div>
+
+
+
+
+                  <%else%>
+                     <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto">
+                          <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="#features">Caracteristicas/a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="<%= new_freelance_session_path %>">Ingresar Freelance
+                              <i class="zmdi zmdi-account"></i>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="<%= new_client_session_path %>">Ingresar Cliente
+                              <i class="zmdi zmdi-account"></i>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+
+                <%end%>
+               
         <% end %>
         
       

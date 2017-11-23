@@ -63,18 +63,32 @@
                             
                                 <% if freelance_signed_in? %>
                                 <li><a class="page-scroll"> <%= current_freelance.email  %></a></li>
+
                                 <li><a class="page-scroll" href="/dashboard/index">Panel de Control</a></li>
+
+                                <li><%= link_to '/freelances/sign_out', class: "page-scroll", method: :delete do %>
+                                           Cerrar Session    
+                                        <% end %></li>
                                      <% else %>
-                                     <li><%= link_to "login", new_freelance_session_path %></li>
-                                     <% end %>
-                            
-                            <li>
+                                     <%if client_signed_in? %>
+                                        <li><a class="page-scroll"> <%= current_client.email  %></a></li>
+                                        <li><a class="page-scroll" href="/clients/client_view">Pagina Administrativa</a></li>
+                                       <li> <%= link_to destroy_client_session_path, class: "page-scroll", method: :delete,data: { confirm: 'Estas seguro de salir?' } do %>
+                                                Cerrar sesion
+                                        <% end %></li>
+                                        <% else %>
+                                            <li><%= link_to "login freelance", new_freelance_session_path %></li>
+                                            <li><%= link_to "login client", new_client_session_path %></li>
+                                            <li>
                                 <a class="page-scroll" href="#features">Herramientas</a>
                             </li>
                             <li>
                                 <a class="page-scroll" href="/contacto">Contacto</a>
         
                             </li>
+                                     <% end %>
+                                     
+                                <% end %>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->

@@ -20,6 +20,7 @@ class SupportsController < ApplicationController
       @chat_usr_type = true
     else 
       if client_signed_in?
+        @client = current_client
         @chat_usr_name = current_client.username
         @chat_usr_type = false
         else
@@ -40,13 +41,17 @@ class SupportsController < ApplicationController
   # POST /supports
   # POST /supports.json
   def create
-      @support = Support.find_by(client_id:params[:client_id])
+      @support = Support.where("client_id=" + params[:client_id] + " and freelance_id=" + current_freelance.id.to_s).limit(1).take!
+      
+      puts 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxx'
+      puts @support
+      puts 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxx'
 
       if @support == nil
         @support = Support.new
         @support.client_id = params[:client_id]
         @support.freelance_id = current_freelance.id
-
+        
         if @support.save
             newAddr = supports_path + '/' + @support.id.to_s
 
@@ -57,24 +62,23 @@ class SupportsController < ApplicationController
         return
       end
 
-      if @support.freelance_id == nil
-        @support.update(freelance_id: current_freelance.id)
-      end
+      
 
+      @sender_type=1
       newAddr = supports_path + '/' + @support.id.to_s
       redirect_to newAddr
-
   end
 
-  #funcion para el cliente
-    # llamada post
-  def create_client
-    @support = Support.find_by(client_id:current_client.id)
 
+  def create_client
+    
+    @support = Support.where("client_id=" + current_client.id.to_s + " and freelance_id=" + params[:freelance_id]).limit(1).take! rescue nil
+  
     if @support == nil
       @support = Support.new
       @support.client_id = current_client.id
-
+      @support.freelance_id = params[:freelance_id]
+      
       if @support.save
           newAddr = supports_path + '/' + @support.id.to_s
 
@@ -85,11 +89,10 @@ class SupportsController < ApplicationController
       return
     end
 
+    @sender_type=0
     newAddr = supports_path + '/' + @support.id.to_s
     redirect_to newAddr
-
-end
-  
+  end
 
 
 

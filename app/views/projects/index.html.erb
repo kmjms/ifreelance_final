@@ -4,71 +4,6 @@
 <%= render "partials/side_freelance" %>
 
 <div id="page-content-wrapper"  class=" col-sm-9 col-sm-offset-3">
-<<<<<<< HEAD
-<br>
-<br>
-<br>
- <div class="card">
-                        <div class="card-header">
-                            <h2>Listado de Proyectos
-                                <small>Proyectos actuales creados en la plataforma</small>
-                            </h2>
-                        </div>
-
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nombre</th>
-                                    <th>Descripcion</th>
-                                    <th>Inicio</th>
-                                    <th>Fin</th>
-                                    <th>Precio</th>
-                                    <th>Acciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <div id = "MARCA" style="display:none"></div>
-                                <% @projects.each do |proj| %>
-                                    <tr>
-                                        <td><%= proj.id %></td>
-                                        <td><%= proj.name %></td>
-                                        <td width="30%"><%= proj.description %></td>
-                                        <td><%= proj.start_date %></td>
-                                        <td><%= proj.end_date %></td>
-                                        <td><%= proj.total_price %></td>
-
-                                        <td width="30%">
-                                        <a class="btn bgm-cyan waves-effect" href = "<%= projects_path %>/<%= proj.id%>/items"><i class="zmdi zmdi-collection-item"></i></a> 
-                                        
-                                        <form method="post" action="/projects/send_bill_by_email" style="display:inline" onsubmit="confirmationMessage('Factura enviada exitosamente')">
-                                            <input type = "text" name="id" value="<%= proj.id %>" style="display:none">
-                                            <button class="btn bgm-teal waves-effect" type="submit"><i class="zmdi zmdi-email"></i></button> 
-                                        </form>
-
-                                        <a class="btn bgm-teal waves-effect" href = "<%= projects_path%>/<%= proj.id%>/edit"><i class="zmdi zmdi-edit"></i></a> 
-                                        
-                                        <a class="btn btn-warning waves-effect" href = "<%= projects_path %>/<%= proj.id%>.pdf"><i class="zmdi zmdi-collection-pdf"></i></a> 
-                                            <% valuePath = projects_path.to_s + "/" + proj.id.to_s %>
-                                         <%= link_to valuePath, class: "btn btn-danger waves-effect", method: :delete,data: { confirm: 'Estas seguro de eliminar?' } do %>
-                                            <i class="zmdi zmdi-close"></i>
-                                        <% end %>
-                                        
-                                        
-                                        </td>
-                                                
-                                    
-                                    </tr>
-                                   
-                                <% end %>
-                                
-                              
-                                </tbody>
-                            </table>
-                        </div>
-=======
     <div class="card">
         <div class="card-header">
             <h2>Listado de Proyectos
@@ -130,7 +65,6 @@
                 </tbody>
             </table>
         </div>
->>>>>>> d7e100d4c78676474ae655782340bf57582da727
     </div>
 
     <div class="card">

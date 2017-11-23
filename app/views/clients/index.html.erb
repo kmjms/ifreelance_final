@@ -1,62 +1,4 @@
 <div id="page-content-wrapper"  class=" col-sm-9 col-sm-offset-3">
-<<<<<<< HEAD
-<br>
-<br>
-<br>
- <div class="card">
-                        <div class="card-header">
-                            <h2>Lista de Clientes
-                                <small>Clientes Actualmente creados por el usuario</small>
-                            </h2>
-                        </div>
-
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
-                                    <th>Email</th>
-                                    <th>Nombre usuario</th>
-                                    <th>Acciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <div id = "MARCA" style="display:none"></div>
-                                <% @clients.each do |cli| %>
-                                    <tr>
-                                        <td><%= cli.id %></td>
-                                        <td><%= cli.name %></td>
-                                        <td><%= cli.surname %></td>
-                                        <td><%= cli.email %></td>
-                                        <td><%= cli.username %></td>
-                                  
-                                        <td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-                                        <a class="btn bgm-teal waves-effect" href = "<%= clients_path%>/<%= cli.id%>/edit"><i class="zmdi zmdi-edit"></i></a> 
-                                        <form action = '/supports' method='post' style='display:inline'>
-                                            <input type='text' name='client_id' value='<%= cli.id%>' style='display:none'>
-                                            <button type="submit" class="btn bgm-teal waves-effect" ><i class="zmdi zmdi-comment-text-alt"></i></button>
-                                        </form>
-                                        
-                                            <% valuePath = clients_path.to_s + "/" + cli.id.to_s %>
-                                         <%= link_to valuePath, class: "btn btn-danger waves-effect", method: :delete,data: { confirm: 'Estas seguro de eliminar?' } do %>
-                                            <i class="zmdi zmdi-close"></i>
-                                        <% end %>
-                                        
-                                        
-                                        </td>
-                                                
-                                    </tr>
-                                   
-                                <% end %>
-                                
-                              
-                                </tbody>
-                            </table>
-                        </div>
-=======
     <div class="card">
         <div class="card-header">
             <h2>Lista de Clientes
@@ -86,6 +28,10 @@
                         <td><%= cli.username %></td>
                         <td>
                             <a class="btn bgm-teal waves-effect" href = "<%= clients_path%>/<%= cli.id%>/edit"><i class="zmdi zmdi-edit"></i></a> 
+                            <form action = "clients/details" method="post" style="display:inline">
+                                <input type="text" name="id" value="<%= cli.id %>" style="display:none">
+                                <button type="submit" class="btn bgm-teal waves-effect"><i class="zmdi zmdi-eye"></i></button>
+                            </form>
                             <% valuePath= clients_path.to_s + "/" + cli.id.to_s %>
                             <%= link_to valuePath, class: "btn btn-danger waves-effect", method: :delete,data: { confirm: 'Estas seguro de eliminar?' } do %>
                             <i class="zmdi zmdi-close"></i>
@@ -96,7 +42,6 @@
                 </tbody>
             </table>
         </div>
->>>>>>> d7e100d4c78676474ae655782340bf57582da727
     </div>
     <div class="card">
         <!-- Formulario -->

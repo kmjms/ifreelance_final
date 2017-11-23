@@ -26,10 +26,19 @@
     </head>
     <body>
         <%= render "partials/header" %>
-
+        
         <section id="main">
             <div class="container-fluid" style="padding:0px 0px;">
-        <%= render "partials/side_freelance" %>
+            <%if freelance_signed_in? %>
+                <%= render "partials/side_freelance" %>
+
+                <% else %>
+                <% if client_signed_in? %>
+                    <%= render "partials/side_client" %>
+
+                <% end %>
+            <% end %>
+           
 
             <%= yield %>
             </div>
@@ -147,7 +156,16 @@
 
     setTimeout(function () {
         if (!$('.login-content')[0]) {
-            notify('Bienvenido de nuevo <%= current_freelance.email %> ', 'inverse');
+
+            <%if freelance_signed_in? %>
+                notify('Bienvenido de nuevo <%= current_freelance.email %> ', 'inverse');
+
+                <% else %>
+                <% if client_signed_in? %>
+                    notify('Bienvenido de nuevo <%= current_client.email %> ', 'inverse');
+
+                <% end %>
+            <% end %>
         }
     }, 1000)
 });

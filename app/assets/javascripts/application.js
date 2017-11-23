@@ -31,4 +31,4 @@
 //= require app.min
 //= require cable
 //= require eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min
-
+//= require alerts
