@@ -25,6 +25,7 @@
     }
 </style>
 
+
 <section id="content">
                 <div class="container">
 <div class="container container-alt">
@@ -35,7 +36,17 @@
                             <header class="mb-header">
                                 <div class="mbh-user clearfix">
                                     
-                                    <div class="p-t-5" style="text-transform: uppercase;">Chat Soporte <strong><%= @chat_usr_name %></strong></div>
+                                    <div class="p-t-5" style="text-transform: uppercase;">Chat Soporte <strong><%= @chat_usr_name %></strong><br>
+                                    Bienvenido <%if freelance_signed_in? %>
+                                    Freelance
+                                    <input id="SENDER" value ="true" hidden> 
+                                    <% else %>
+                                    <% if client_signed_in? %>
+                                    Cliente
+                                    <input id="SENDER" value ="false" hidden> 
+                                    <% end %>
+                                    <% end %>
+                                    </div>
                                 </div>
 
                                 <ul class="actions">
@@ -129,12 +140,23 @@
 </section>
 </div>
 
+<script>
+
+    function bajarChat(){
+        var objDiv = document.getElementById("panel-mensajes");
+objDiv.scrollTop = objDiv.scrollHeight;
+    }
+    
+    (function() {
+   bajarChat();
+
+})();
+</script>
+
 
 <!-- importanto codigo propio -->
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
 <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
-
-
-
+<%= javascript_include_tag 'cable' %>
 <%= javascript_include_tag 'supports-show', 'data-turbolinks-track': 'reload' %>
 <%= javascript_include_tag 'channels/support', 'data-turbolinks-track': 'reload' %>

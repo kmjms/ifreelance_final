@@ -14,7 +14,7 @@ window.recieveMessage = (data) ->
     $('<div class="mblm-item mblm-item-right"><div>' + data.body  + '</div><small>' + data.created_at + '</small></div>').appendTo $('#panel-mensajes')
   
   $('.message-input textarea').val null
-  $('.messages').animate { scrollTop: $(document).height() }, 'fast'
+  bajarChat()
   return
 
 window.sendMessage = ->

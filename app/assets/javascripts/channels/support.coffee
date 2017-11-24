@@ -16,7 +16,6 @@ App.support = App.cable.subscriptions.create {channel:"SupportChannel",id:value}
     return
 
   speak: (message) ->
-    alert $('#SENDER').attr 'value'
     @perform 'speak',body:message,sender:$('#SENDER').attr 'value'
 
 

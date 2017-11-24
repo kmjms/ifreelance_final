@@ -64,8 +64,13 @@ class SupportsController < ApplicationController
       end
 
       
-
-      @sender_type=true
+      if freelance_signed_in?
+        @sender_type=true
+      else
+        if client_signed_in?
+          @sender_type=false
+        end
+      end
       newAddr = supports_path + '/' + @support.id.to_s
       redirect_to newAddr
   end
