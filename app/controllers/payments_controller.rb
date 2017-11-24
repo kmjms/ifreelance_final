@@ -3,7 +3,7 @@ class PaymentsController < ApplicationController
     def pay_bill
     end
 
-    def response
+    def response_view
     end
 
     def confirmation
