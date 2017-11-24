@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:details]
   before_action :authenticate_freelance!, only: [:index,:create]
-  before_action :authenticate_client!, only: [:client_view]
+  before_action :authenticate_client!, only: [:client_view,:client_projects]
 
   skip_before_action :verify_authenticity_token
   # GET /clients
@@ -86,6 +86,11 @@ class ClientsController < ApplicationController
       @freelances = current_client.freelances
       @supports = Support.where(client_id:current_client.id)
   end
+  
+  def client_projects
+      @projects = Project.find_by(client_id:current_client.id)
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client

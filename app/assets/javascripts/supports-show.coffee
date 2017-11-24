@@ -23,7 +23,7 @@ window.sendMessage = ->
     return false
   App.support.speak message , $('#SENDER').attr 'value'
   $('.message-input textarea').val null
-  scrollAnimation()
+  scrollAnimation() 
 
 
 $('.messages').animate { scrollTop: $(document).height() }, 'fast'

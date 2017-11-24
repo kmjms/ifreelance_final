@@ -1,0 +1,91 @@
+<%= render "partials/header" %>
+
+
+<%= render "partials/side_client" %>
+
+<%= render "partials/swal" %>
+
+<div id="page-content-wrapper"  class=" col-sm-9 col-sm-offset-3">
+    
+    <div class="card">
+        <div class="card-header">
+            <h2>Listado de Proyectos
+                <small>Proyectos actuales creados en la plataforma</small>
+            </h2>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Inicio</th>
+                        <th>Fin</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <div id = "MARCA" style="display:none"></div>
+                    <% index = 0 %>
+                    <% @projects.each do |proj| %>
+                    
+                    <!-- Formulario que contiene los datos de llamadas a payu -->
+                    <% string_to_encrypt = '4Vj8eK4rloUd272L48hsrarnUA' + '~' + '508029' + '~' + proj.id + '~' + proj.total_price + '~' + 'COP' %>
+                     <% @signature = Digest::MD5.hexdigest(string_to_encrypt) %>
+                     
+                        <form id="formBuy_<%= proj.id %>" method="post" action="https://sandbox.gateway.payulatam.com/ppp-web-gateway" style="display:none">
+                            <input name="merchantId"    type="hidden"  value="508029">
+                              <input name="referenceCode" type="hidden"  value="<%= proj.id %>" >
+                              <input name="description"   type="hidden"  value="<%= proj.description %>">
+                              <input name="amount"        type="hidden"  value="<%= proj.total_price %>">
+                              <input name="tax"           type="hidden"  value="0">
+                              <input name="taxReturnBase" type="hidden"  value="0" >
+                              <input name="signature"     type="hidden"  value="<%= @signature %>">
+                              <input name="accountId"     type="hidden"  value="512321" >
+                              <input name="currency"      type="hidden"  value="COP" >
+                              <input name="buyerFullName"    type="hidden"  value="<%= @client.name %> <%= @client.surname %>" >
+                              <input name="buyerEmail"    type="hidden"  value="<%= @client.email %>" >
+                              <input name="shippingAddress"    type="hidden"  value="${client.location.address}" >
+                              <input name="shippingCity"    type="hidden"  value="Bogota" >
+                              <input name="shippingCountry"    type="hidden"  value="Colombia" >
+                              <input name="telephone"    type="hidden"  value="3158748596" >
+                              <input name="test"          type="hidden"  value="1" >
+                              <input name="responseUrl"    type="hidden"  value="${config.responseUrl}" >
+                              <input name="confirmationUrl"    type="hidden"  value="${config.confirmationUrl}" >
+                            </form>    
+
+    <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+                    
+                    <tr>
+                        <td><%= proj.id %></td>
+                        <td><%= proj.name %></td>
+                        <td><%= proj.description %></td>
+                        <td><%= proj.start_date %></td>
+                        <td><%= proj.end_date %></td>
+                        <td>$ <%= proj.total_price %></td>
+
+                        <td width="30%">
+         
+                                <button class="btn bgm-teal waves-effect" type="submit" onclick="document.getElementById('myForm_<%= proj.id %>').submit()"><i class="zmdi zmdi-money"></i></button> 
+                        
+                        </td>
+
+
+                    </tr>
+
+                    <% end %>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+

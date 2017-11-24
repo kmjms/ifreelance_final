@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :clients,only: [:index,:destroy,:edit,:update,:create]
 
   get 'clients/client_view'
+  get 'clients/client_projects'
 
 
   post 'clients/details'
