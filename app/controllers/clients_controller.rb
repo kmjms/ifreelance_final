@@ -11,6 +11,7 @@ class ClientsController < ApplicationController
 
   
   def index
+    
     @freelance = current_freelance
     @clients = current_freelance.clients.all
   end
@@ -20,6 +21,7 @@ class ClientsController < ApplicationController
 
   # GET /clients/new
   def new
+    flash[:notice] = "Cliente creado"
     @client = Client.new
   end
 
@@ -34,7 +36,7 @@ class ClientsController < ApplicationController
   # POST /clients.json
   def create
     #newParams = client_params.as_json
-
+    flash[:notice] = "Cliente creado"
     @client = current_freelance.clients.create(client_params)
 
     #@client = current_freelance.clients

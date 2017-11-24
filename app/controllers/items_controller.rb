@@ -27,6 +27,7 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
+    flash[:notice] = "Item creado"
     @item = Item.new
   end
 

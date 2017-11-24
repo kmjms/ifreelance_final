@@ -65,7 +65,7 @@ class SupportsController < ApplicationController
 
       
 
-      @sender_type=1
+      @sender_type=true
       newAddr = supports_path + '/' + @support.id.to_s
       redirect_to newAddr
   end
@@ -90,7 +90,7 @@ class SupportsController < ApplicationController
       return
     end
 
-    @sender_type=0
+    @sender_type=false
     newAddr = supports_path + '/' + @support.id.to_s
     redirect_to newAddr
   end

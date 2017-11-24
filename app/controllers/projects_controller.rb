@@ -37,6 +37,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
+    flash[:notice] = "Proyecto creado"
     @project = current_freelance.projects.new
   end
 

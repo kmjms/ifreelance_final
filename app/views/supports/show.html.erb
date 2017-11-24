@@ -1,6 +1,7 @@
 <div id='exchange_param' data-action-url="<%= @support.id %>">
 </div>
 
+<div id="SENDER" value = "<%=@sender_type %>"></div>
 <!-- Codigo css propio -->
 
 
@@ -67,8 +68,9 @@
                                     </li>
                                 </ul>
                             </header>
+                            
 
-                            <div class="panel-mensajes" id="panel-mensajes" style="    height: 70%;   overflow-y: overlay; padding: 20 20 0 20">
+                            <div class="panel-mensajes" id="panel-mensajes" style=" height: 70%;overflow-y: overlay;padding: 20px 20px 0px 20px!important;">
                                 
                                  <% @support.messages.each do |mess| %>
                                     <% if mess.sender_type == 1 %>
@@ -106,6 +108,7 @@
                                     </div>
                                           -->                 
                             </div>
+                          
                             
 
                                 <div class="mbl-compose">

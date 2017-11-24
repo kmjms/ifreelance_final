@@ -8,10 +8,10 @@ scrollAnimation = ->
 window.recieveMessage = (data) ->
   console.log data
   if data.sender_type == true
-    $('<div class="mblm-item mblm-item-left"><div>' + data.body  + '</div><small>' + data.created_at + '</small></div>').appendTo $('.messages ul')
+    $('<div class="mblm-item mblm-item-left"><div>' + data.body  + '</div><small>' + data.created_at + '</small></div>').appendTo $('#panel-mensajes')
   
   else
-    $('<div class="mblm-item mblm-item-right"><div>' + data.body  + '</div><small>' + data.created_at + '</small></div>').appendTo $('.messages ul')
+    $('<div class="mblm-item mblm-item-right"><div>' + data.body  + '</div><small>' + data.created_at + '</small></div>').appendTo $('#panel-mensajes')
   
   $('.message-input textarea').val null
   $('.messages').animate { scrollTop: $(document).height() }, 'fast'
@@ -21,7 +21,7 @@ window.sendMessage = ->
   message = $('.message-input textarea').val()
   if $.trim(message) == ''
     return false
-  App.support.speak message , 1
+  App.support.speak message , $('#SENDER').attr 'value'
   $('.message-input textarea').val null
   scrollAnimation()
 
