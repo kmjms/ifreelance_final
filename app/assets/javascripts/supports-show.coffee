@@ -1,20 +1,19 @@
 # cambiar toda esta funcionalidad por clases Angular,  Coffee
-scrollAnimation = ->
-  $('.messages').animate { scrollTop: $(document).height() }, 'fast'
-  return
                                
-                                       
-                                  
 window.recieveMessage = (data) ->
   console.log data
-  if data.sender_type == true
-    $('<div class="mblm-item mblm-item-left"><div>' + data.body  + '</div><small>' + data.created_at + '</small></div>').appendTo $('#panel-mensajes')
-  
+  if $('#chat'+data.id).val()
+    console.log('test')
   else
-    $('<div class="mblm-item mblm-item-right"><div>' + data.body  + '</div><small>' + data.created_at + '</small></div>').appendTo $('#panel-mensajes')
-  
-  $('.message-input textarea').val null
-  bajarChat()
+    if data.sender_type == true
+      console.log('test2')
+      $('<div class="mblm-item mblm-item-left"><div>' + data.body  + '</div><small>' + data.created_at + '</small></div><input hidden value="true" id="chat'+data.id+'" />').appendTo $('#panel-mensajes')
+      bajarChat()
+    else
+      console.log('test3')
+      $('<div class="mblm-item mblm-item-right"><div>' + data.body  + '</div><small>' + data.created_at + '</small></div><input hidden value="true" id="chat'+data.id+'" />').appendTo $('#panel-mensajes')
+      $('.message-input textarea').val null
+      bajarChat()
   return
 
 window.sendMessage = ->
@@ -23,7 +22,6 @@ window.sendMessage = ->
     return false
   App.support.speak message , $('#SENDER').attr 'value'
   $('.message-input textarea').val null
-  scrollAnimation() 
 
 
 $('.messages').animate { scrollTop: $(document).height() }, 'fast'
